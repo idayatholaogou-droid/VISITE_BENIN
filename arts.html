@@ -1,25 +1,595 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Document</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arts du Bénin — Le Bénin Et Ses Découvertes</title>
     <link rel="stylesheet" href="style.css">
-</head>
-<body> 
-        <h1>A la découverte des arts</h1>
-        <img src="images/Benin collage.jpeg" alt="D:\VISITE_BENIN\images\Benin collage.jpeg ">
-          <nav>
-            <ul>
-                <li><a href="about.html">about</a></li>
-                <li><a href="arts.html">arts</a></li> 
-                <li><a href="culture.html">culture</a></li>
-                <li><a href="gastronomie.html">gastronomie</a></li>
-                <li><a href="index.html">index</a></li> 
-                <li><a href="tourisme.html">tourisme</a></li>
-                <li><a href="contact.html">contact</a></li>
-            </ul>
-          </nav>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
-    
+        body {
+            font-family: 'Georgia', serif;
+            color: #1a1a1a;
+            background-color: #fff;
+        }
+
+        /* ===== NAVIGATION ===== */
+        .head {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%;
+            z-index: 10;
+            background: rgba(0,0,0,0.30);
+            padding: 18px 0;
+        }
+        .head ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+        }
+        .head ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-family: Arial, sans-serif;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: color 0.3s;
+        }
+        .head ul li a:hover { color: #e8c97a; }
+        .head ul li a.active {
+            color: #c0392b;
+            border-bottom: 2px solid #c0392b;
+            padding-bottom: 2px;
+        }
+
+        /* ===== HERO ===== */
+        .hero-arts {
+            background-image: url(images/mur.jpg);
+            background-size: cover;
+            background-position: center 30%;
+            height: 100vh;
+            position: relative;
+            color: white;
+            text-align: center;
+        }
+        .hero-arts::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            height: 50%;
+            background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.75));
+        }
+        .hero-text {
+            position: absolute;
+            bottom: 10%;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+            width: 80%;
+        }
+        .hero-text h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.8);
+            margin-bottom: 14px;
+            line-height: 1.2;
+        }
+        .hero-text p {
+            font-size: 1.05rem;
+            line-height: 1.8;
+            text-shadow: 1px 1px 5px rgba(0,0,0,0.9);
+            max-width: 680px;
+            margin: 0 auto;
+        }
+
+        /* ===== BANDE ROUGE ===== */
+        .red-band {
+            background: #c0392b;
+            padding: 20px 40px;
+            text-align: center;
+        }
+        .red-band p {
+            color: rgba(255,255,255,0.9);
+            font-size: 1rem;
+            font-style: italic;
+            letter-spacing: 0.5px;
+        }
+
+        /* ===== SECTIONS COMMUNES ===== */
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        .section-header .tag {
+            font-size: 0.75rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: #c0392b;
+            font-family: Arial, sans-serif;
+            font-weight: 700;
+        }
+        .section-header h2 {
+            font-size: 2.2rem;
+            color: #1a1a1a;
+            margin-top: 10px;
+            font-weight: 700;
+        }
+        .section-header .divider {
+            width: 60px;
+            height: 3px;
+            background: #c0392b;
+            margin: 16px auto 0;
+        }
+
+        /* ===== SECTION ART ROYAL ===== */
+        .art-royal {
+            padding: 80px 40px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        .art-royal-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+        .art-royal-img img {
+            width: 100%;
+            height: 420px;
+            object-fit: cover;
+            border-radius: 4px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+        }
+        .art-royal-text h3 {
+            font-size: 1.7rem;
+            color: #1a1a1a;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+        .art-royal-text h3 span {
+            color: #c0392b;
+        }
+        .art-royal-text p {
+            font-size: 0.97rem;
+            line-height: 1.9;
+            color: #555;
+            margin-bottom: 16px;
+        }
+        .art-tag {
+            display: inline-block;
+            background: #c0392b;
+            color: #fff;
+            font-size: 0.72rem;
+            font-family: Arial, sans-serif;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            padding: 5px 14px;
+            border-radius: 2px;
+            margin-bottom: 16px;
+        }
+
+        /* ===== GALERIE GRILLE ===== */
+        .galerie-section {
+            background: #f7f4f0;
+            padding: 80px 40px;
+        }
+        .galerie-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            max-width: 1100px;
+            margin: 50px auto 0;
+        }
+        .galerie-card {
+            background: #fff;
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .galerie-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 28px rgba(0,0,0,0.14);
+        }
+        .galerie-card img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+        }
+        .galerie-card-body {
+            padding: 20px;
+        }
+        .galerie-card-body h4 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 8px;
+        }
+        .galerie-card-body p {
+            font-size: 0.88rem;
+            color: #666;
+            line-height: 1.7;
+        }
+        .galerie-card-body .cat {
+            font-size: 0.7rem;
+            font-family: Arial, sans-serif;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #c0392b;
+            font-weight: 700;
+            margin-bottom: 6px;
+            display: block;
+        }
+
+        /* ===== SECTION APPLIQUÉS ===== */
+        .appliques-section {
+            padding: 80px 40px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        .appliques-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+        .appliques-content.reverse {
+            direction: rtl;
+        }
+        .appliques-content.reverse > * {
+            direction: ltr;
+        }
+        .appliques-img img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 4px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+        }
+        .appliques-text h3 {
+            font-size: 1.6rem;
+            color: #1a1a1a;
+            margin-bottom: 18px;
+            font-weight: 700;
+        }
+        .appliques-text p {
+            font-size: 0.97rem;
+            line-height: 1.9;
+            color: #555;
+            margin-bottom: 14px;
+        }
+
+        /* ===== ART CONTEMPORAIN ===== */
+        .contemporain-section {
+            background: #1a1a1a;
+            padding: 80px 40px;
+        }
+        .contemporain-section .section-header .tag { color: #e8c97a; }
+        .contemporain-section .section-header h2 { color: #fff; }
+        .contemporain-section .section-header .divider { background: #e8c97a; }
+
+        .artistes-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            max-width: 1100px;
+            margin: 50px auto 0;
+        }
+        .artiste-card {
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 6px;
+            padding: 28px 24px;
+            transition: background 0.3s;
+        }
+        .artiste-card:hover {
+            background: rgba(255,255,255,0.1);
+        }
+        .artiste-initiales {
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            background: #c0392b;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #fff;
+            font-family: Arial, sans-serif;
+            margin-bottom: 16px;
+        }
+        .artiste-card h4 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 6px;
+        }
+        .artiste-card .discipline {
+            font-size: 0.72rem;
+            font-family: Arial, sans-serif;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #e8c97a;
+            margin-bottom: 12px;
+            display: block;
+        }
+        .artiste-card p {
+            font-size: 0.88rem;
+            color: rgba(255,255,255,0.6);
+            line-height: 1.7;
+        }
+
+        /* ===== CITATION ===== */
+        .quote-section {
+            background: #c0392b;
+            padding: 60px 40px;
+            text-align: center;
+        }
+        .quote-section blockquote {
+            font-size: 1.5rem;
+            color: #fff;
+            font-style: italic;
+            max-width: 750px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+        .quote-section cite {
+            display: block;
+            margin-top: 16px;
+            font-size: 0.82rem;
+            color: rgba(255,255,255,0.65);
+            font-style: normal;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: #111;
+            padding: 50px 40px 24px;
+        }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 50px;
+            max-width: 1100px;
+            margin: 0 auto 40px;
+        }
+        .footer-brand h3 { color: #fff; font-size: 1.1rem; margin-bottom: 12px; }
+        .footer-brand p { color: rgba(255,255,255,0.45); font-size: 0.85rem; line-height: 1.8; }
+        .footer-links h4 {
+            color: #c0392b;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 16px;
+            font-family: Arial, sans-serif;
+        }
+        .footer-links ul { list-style: none; }
+        .footer-links ul li { margin-bottom: 10px; }
+        .footer-links ul li a {
+            color: rgba(255,255,255,0.5);
+            text-decoration: none;
+            font-size: 0.88rem;
+            transition: color 0.3s;
+        }
+        .footer-links ul li a:hover { color: #e8c97a; }
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 24px;
+            text-align: center;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        .footer-bottom p { color: rgba(255,255,255,0.3); font-size: 0.8rem; }
+        .footer-bottom span { color: #c0392b; }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .head ul { gap: 14px; flex-wrap: wrap; padding: 0 16px; }
+            .hero-text h1 { font-size: 1.9rem; }
+            .art-royal-content,
+            .appliques-content { grid-template-columns: 1fr; gap: 30px; }
+            .appliques-content.reverse { direction: ltr; }
+            .galerie-grid { grid-template-columns: 1fr 1fr; }
+            .artistes-grid { grid-template-columns: 1fr; }
+            .footer-grid { grid-template-columns: 1fr; gap: 30px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HERO -->
+    <div class="hero-arts">
+        <nav class="head">
+            <ul>
+                <li><a href="about.html">About</a></li>
+                <li><a href="arts.html" class="active">Arts</a></li>
+                <li><a href="culture.html">Culture</a></li>
+                <li><a href="gastronomie.html">Gastronomie</a></li>
+                <li><a href="index.html">Index</a></li>
+                <li><a href="tourisme.html">Tourisme</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+        <div class="hero-text">
+            <h1>L'Art au Cœur d'une Civilisation</h1>
+            <p>Du Royaume de Dahomey jusqu'à aujourd'hui, l'art béninois raconte l'histoire d'un peuple fier,
+            spirituel et créateur. Sculptures, bas-reliefs, appliqués, masques — chaque œuvre est un fragment
+            d'âme gravé dans la matière.</p>
+        </div>
+    </div>
+
+    <!-- BANDE ROUGE -->
+    <div class="red-band">
+        <p>« L'art béninois reflète l'héritage culturel du pays, la complexité des croyances du Vodoun, et les interactions avec le monde extérieur. »</p>
+    </div>
+
+    <!-- ART ROYAL — BAS-RELIEFS -->
+    <section class="art-royal">
+        <div class="art-royal-content">
+            <div class="art-royal-img">
+                <img src="D:\VISITE_BENIN\images\basRelief (1).jpg"alt="images/basRelief (1).jpg">
+            </div>
+            <div class="art-royal-text">
+                <span class="art-tag">Art Royal</span>
+                <h3>Les Bas-reliefs <span>d'Abomey</span></h3>
+                <p>Les palais royaux d'Abomey, classés au patrimoine mondial de l'UNESCO, sont ornés de bas-reliefs
+                en terre polychrome d'une richesse exceptionnelle. Ces sculptures murales constituent un véritable
+                livre d'histoire pour un royaume sans écriture.</p>
+                <p>Réalisés par des artisans de la cour des rois Fon entre le XVIIe et le XIXe siècle, ils narrent
+                batailles, mythes fondateurs, symboles royaux et scènes de la vie du Dahomey avec un réalisme saisissant.
+                Le Musée d'Abomey en conserve plus de 1 400 pièces.</p>
+                <p>Ces œuvres ont été restaurées dans les années 1990 grâce à un programme conjoint entre le Getty
+                Conservation Institute et le gouvernement béninois, témoignant de leur valeur universelle.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- GALERIE — 3 FORMES D'ART -->
+    <section class="galerie-section">
+        <div class="section-header">
+            <span class="tag">Patrimoine</span>
+            <h2>Les Grandes Formes d'Art Béninois</h2>
+            <div class="divider"></div>
+        </div>
+
+        <div class="galerie-grid">
+            <div class="galerie-card">
+                <img src="D:\VISITE_BENIN\images\African_sculpture.jpg "alt="images/African_sculpture.jpg">
+                <div class="galerie-card-body">
+                    <span class="cat">Sculpture</span>
+                    <h4>Statues & Objets Vodoun</h4>
+                    <p>Les bocio, légba et autres statues rituelles sont sculptés en bois, fer ou argile. Ornés de plumes,
+                    coquillages et matières naturelles, ils servent d'intermédiaires entre les hommes et les divinités.</p>
+                </div>
+            </div>
+
+            <div class="galerie-card">
+                <img src="D:\VISITE_BENIN\images\Masque.jpg" alt="images/Masque.jpg">
+                <div class="galerie-card-body">
+                    <span class="cat">Masques & Costumes</span>
+                    <h4>Masques Egungun & Zangbéto</h4>
+                    <p>Ces masques cérémoniels représentent les esprits des ancêtres revenus parmi les vivants.
+                    Taillés dans le bois et ornés de tissus multicolores, ils sont portés lors de rites funèbres
+                    et de fêtes spirituelles.</p>
+                </div>
+            </div>
+
+            <div class="galerie-card">
+                <img src="D:\VISITE_BENIN\images\Tisseand.jpg" alt="images/Tisseand.jpg">
+                <div class="galerie-card-body">
+                    <span class="cat">Artisanat</span>
+                    <h4>Poterie, Vannerie & Tissage</h4>
+                    <p>La poterie traditionnelle, la vannerie fine et le tissage artisanal en coton sont des
+                    savoir-faire transmis de génération en génération. Les femmes en sont les principales gardiennes
+                    dans de nombreuses communautés béninoises.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- APPLIQUÉS DE TISSU -->
+    <section class="appliques-section">
+        <div class="appliques-content">
+            <div class="appliques-text">
+                <span class="art-tag">Spécialité d'Abomey</span>
+                <h3>Les Appliqués sur Tissu</h3>
+                <p>Nés sous le règne du roi Agonglo, les appliqués sur tissu sont l'une des expressions artistiques
+                les plus distinctives du Bénin. Des formes découpées dans des tissus colorés sont cousues à la main
+                sur un fond de toile, créant des compositions narratives d'une grande finesse.</p>
+                <p>Chaque motif représente un symbole royal, une divinité vodoun ou une scène historique. La famille
+                Yèmadjè d'Abomey en est la gardienne principale depuis des siècles. Ces œuvres sont aujourd'hui
+                reconnues sur la scène internationale de l'art africain.</p>
+            </div>
+            <div class="appliques-img">
+                <img src="D:\VISITE_BENIN\images\Tissu.jpg" alt="images/Tissu.jpg">
+            </div>
+        </div>
+    </section>
+
+    <!-- ARTISTES CONTEMPORAINS -->
+    <section class="contemporain-section">
+        <div class="section-header">
+            <span class="tag">Aujourd'hui</span>
+            <h2>Artistes Béninois Contemporains</h2>
+            <div class="divider"></div>
+        </div>
+
+        <div class="artistes-grid">
+            <div class="artiste-card">
+                <div class="artiste-initiales">CT</div>
+                <h4>Cyprien Tokoudagba</h4>
+                <span class="discipline">Peinture & Bas-relief</span>
+                <p>Restaurateur des palais d'Abomey devenu artiste international, il a exposé au Centre Pompidou
+                à Paris en 1989. Son œuvre puise dans les mythes vodoun et l'iconographie Fon.</p>
+            </div>
+
+            <div class="artiste-card">
+                <div class="artiste-initiales">TD</div>
+                <h4>Théodore Dakpogan</h4>
+                <span class="discipline">Sculpture en métal</span>
+                <p>Ancien forgeron, il crée des sculptures monumentales à partir de ferraille récupérée,
+                mêlant symbolique vodoun et critique du monde contemporain postcolonial.</p>
+            </div>
+
+            <div class="artiste-card">
+                <div class="artiste-initiales">DK</div>
+                <h4>Dominique Kouas</h4>
+                <span class="discipline">Sculpture & Pein-tik</span>
+                <p>Artiste de Porto-Novo, il a inventé le "Pein-tik", une technique fusionnant sculpture,
+                peinture et batik. Son œuvre dialogue entre tradition africaine et modernité.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CITATION -->
+    <div class="quote-section">
+        <blockquote>
+            L'art béninois ne décore pas — il raconte, il protège, il honore.
+        </blockquote>
+        <cite>— Le Bénin Et Ses Découvertes</cite>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <h3>Le Bénin Et Ses Découvertes</h3>
+                <p>Un espace dédié à la découverte d'une nation fascinante, riche de son histoire,
+                de sa culture et de sa diversité. Explorez, apprenez, émerveillez-vous.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Navigation</h4>
+                <ul>
+                    <li><a href="about.html">À Propos</a></li>
+                    <li><a href="arts.html">Arts</a></li>
+                    <li><a href="culture.html">Culture</a></li>
+                    <li><a href="gastronomie.html">Gastronomie</a></li>
+                    <li><a href="tourisme.html">Tourisme</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Art & Culture</h4>
+                <ul>
+                    <li><a href="#">Bas-reliefs d'Abomey</a></li>
+                    <li><a href="#">Appliqués sur tissu</a></li>
+                    <li><a href="#">Art Vodoun</a></li>
+                    <li><a href="#">Artistes contemporains</a></li>
+                    <li><a href="#">Masques & Cérémonies</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 Le Bénin Et Ses Découvertes — Fait avec <span>❤</span> pour le Bénin</p>
+        </div>
+    </footer>
+
 </body>
 </html>

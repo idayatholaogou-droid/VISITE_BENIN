@@ -1,254 +1,866 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Document</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Culture du Bénin — Le Bénin Et Ses Découvertes</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Georgia', serif;
+            color: #1a1a1a;
+            background-color: #fff;
+        }
+
+        /* ===== NAVIGATION ===== */
+        .head {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%;
+            z-index: 10;
+            background: rgba(0,0,0,0.30);
+            padding: 18px 0;
+        }
+        .head ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+        }
+        .head ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-family: Arial, sans-serif;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: color 0.3s;
+        }
+        .head ul li a:hover { color: #e8c97a; }
+        .head ul li a.active {
+            color: #c0392b;
+            border-bottom: 2px solid #c0392b;
+            padding-bottom: 2px;
+        }
+
+        /* ===== HERO ===== */
+        .hero-culture {
+            background-image: url('images/Porte.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            position: relative;
+            color: white;
+            text-align: center;
+        }
+        .hero-culture::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            height: 50%;
+            background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.75));
+        }
+        .hero-text {
+            position: absolute;
+            bottom: 10%;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+            width: 80%;
+        }
+        .hero-text h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.8);
+            margin-bottom: 14px;
+            line-height: 1.2;
+        }
+        .hero-text p {
+            font-size: 1.05rem;
+            line-height: 1.8;
+            text-shadow: 1px 1px 5px rgba(0,0,0,0.9);
+            max-width: 680px;
+            margin: 0 auto;
+        }
+
+        /* ===== SECTIONS COMMUNES ===== */
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        .section-header .tag {
+            font-size: 0.75rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: #c0392b;
+            font-family: Arial, sans-serif;
+            font-weight: 700;
+        }
+        .section-header h2 {
+            font-size: 2.2rem;
+            color: #1a1a1a;
+            margin-top: 10px;
+            font-weight: 700;
+        }
+        .section-header .divider {
+            width: 60px;
+            height: 3px;
+            background: #c0392b;
+            margin: 16px auto 0;
+        }
+        .section-header.light h2 { color: #fff; }
+        .section-header.light .tag { color: #e8c97a; }
+        .section-header.light .divider { background: #e8c97a; }
+
+        /* ===== INTRO CULTURE ===== */
+        .intro-section {
+            background: #c0392b;
+            padding: 30px 40px;
+            text-align: center;
+        }
+        .intro-section p {
+            color: rgba(255,255,255,0.92);
+            font-size: 1rem;
+            font-style: italic;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* ===== SECTION ROIS ===== */
+        .rois-section {
+            padding: 80px 40px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        .rois-intro {
+            text-align: center;
+            max-width: 750px;
+            margin: 0 auto 60px;
+            font-size: 1rem;
+            color: #555;
+            line-height: 1.9;
+        }
+        .rois-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 28px;
+        }
+        .roi-card {
+            background: #fafafa;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-top: 4px solid #c0392b;
+        }
+        .roi-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 28px rgba(0,0,0,0.13);
+        }
+        .roi-card-header {
+            padding: 24px 20px 16px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        .roi-icon {
+            width: 52px;
+            height: 52px;
+            flex-shrink: 0;
+        }
+        .roi-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+        .roi-card-header h3 {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: #1a1a1a;
+            line-height: 1.3;
+        }
+        .roi-card-header .periode {
+            font-size: 0.72rem;
+            color: #c0392b;
+            font-family: Arial, sans-serif;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            display: block;
+            margin-top: 3px;
+        }
+        .roi-card-body {
+            padding: 0 20px 20px;
+        }
+        .roi-card-body p {
+            font-size: 0.87rem;
+            color: #666;
+            line-height: 1.75;
+        }
+
+        /* ===== ROYAUME PORTO-NOVO ===== */
+        .porto-section {
+            background: #f7f4f0;
+            padding: 80px 40px;
+        }
+        .porto-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 28px;
+            max-width: 1100px;
+            margin: 50px auto 0;
+        }
+        .porto-card {
+            background: #fff;
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+            border-left: 4px solid #c0392b;
+        }
+        .porto-card h3 {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 6px;
+        }
+        .porto-card .periode {
+            font-size: 0.72rem;
+            color: #c0392b;
+            font-family: Arial, sans-serif;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            display: block;
+            margin-bottom: 14px;
+        }
+        .porto-card p {
+            font-size: 0.9rem;
+            color: #666;
+            line-height: 1.75;
+        }
+
+        /* ===== ROYAUME BARIBA ===== */
+        .bariba-section {
+            padding: 60px 40px;
+            max-width: 1100px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .bariba-section h2 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 20px;
+        }
+        .bariba-section p {
+            font-size: 0.97rem;
+            color: #555;
+            line-height: 1.9;
+            max-width: 750px;
+            margin: 0 auto;
+        }
+        .bariba-section .divider {
+            width: 60px;
+            height: 3px;
+            background: #c0392b;
+            margin: 16px auto 24px;
+        }
+
+        /* ===== VODOUN ===== */
+        .vodoun-section {
+            background: #1a1a1a;
+            padding: 80px 40px;
+        }
+        .vodoun-intro {
+            max-width: 800px;
+            margin: 0 auto 60px;
+            text-align: center;
+        }
+        .vodoun-intro p {
+            color: rgba(255,255,255,0.7);
+            font-size: 1rem;
+            line-height: 1.9;
+            margin-top: 20px;
+        }
+        .vodoun-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            max-width: 1100px;
+            margin: 0 auto;
+            align-items: start;
+        }
+        .vodoun-text h3 {
+            font-size: 1.3rem;
+            color: #fff;
+            margin-bottom: 16px;
+            font-weight: 700;
+        }
+        .vodoun-text p {
+            font-size: 0.93rem;
+            color: rgba(255,255,255,0.65);
+            line-height: 1.9;
+            margin-bottom: 16px;
+        }
+
+        /* ===== TABLEAU DIVINITÉS ===== */
+        .tableau-container {
+            overflow: hidden;
+            border-radius: 8px;
+        }
+        .tableau-vodoun {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9rem;
+        }
+        .tableau-vodoun thead {
+            background: #c0392b;
+        }
+        .tableau-vodoun thead th {
+            color: #fff;
+            padding: 14px 20px;
+            text-align: left;
+            font-family: Arial, sans-serif;
+            font-size: 0.78rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+        .tableau-vodoun tbody tr {
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+            transition: background 0.2s;
+        }
+        .tableau-vodoun tbody tr:hover {
+            background: rgba(255,255,255,0.05);
+        }
+        .tableau-vodoun tbody td {
+            padding: 14px 20px;
+            color: rgba(255,255,255,0.75);
+        }
+        .tableau-vodoun tbody td:first-child {
+            color: #e8c97a;
+            font-weight: 700;
+        }
+
+        /* ===== CÉRÉMONIES ===== */
+        .ceremonies-section {
+            padding: 80px 40px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        .ceremonies-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 28px;
+            margin-top: 50px;
+        }
+        .ceremonie-card {
+            background: #fafafa;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .ceremonie-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+        }
+        .ceremonie-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            display: block;
+        }
+        .ceremonie-card-body {
+            padding: 24px;
+        }
+        .ceremonie-card-body h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 6px;
+        }
+        .ceremonie-card-body .lieu {
+            font-size: 0.72rem;
+            color: #c0392b;
+            font-family: Arial, sans-serif;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 14px;
+            display: block;
+        }
+        .ceremonie-card-body p {
+            font-size: 0.9rem;
+            color: #666;
+            line-height: 1.75;
+        }
+
+        /* ===== CITATION ===== */
+        .quote-section {
+            background: #c0392b;
+            padding: 60px 40px;
+            text-align: center;
+        }
+        .quote-section blockquote {
+            font-size: 1.5rem;
+            color: #fff;
+            font-style: italic;
+            max-width: 750px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+        .quote-section cite {
+            display: block;
+            margin-top: 16px;
+            font-size: 0.82rem;
+            color: rgba(255,255,255,0.65);
+            font-style: normal;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        /* ===== FOOTER ===== */
+        footer { background: #111; padding: 50px 40px 24px; }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 50px;
+            max-width: 1100px;
+            margin: 0 auto 40px;
+        }
+        .footer-brand h3 { color: #fff; font-size: 1.1rem; margin-bottom: 12px; }
+        .footer-brand p { color: rgba(255,255,255,0.45); font-size: 0.85rem; line-height: 1.8; }
+        .footer-links h4 {
+            color: #c0392b;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 16px;
+            font-family: Arial, sans-serif;
+        }
+        .footer-links ul { list-style: none; }
+        .footer-links ul li { margin-bottom: 10px; }
+        .footer-links ul li a {
+            color: rgba(255,255,255,0.5);
+            text-decoration: none;
+            font-size: 0.88rem;
+            transition: color 0.3s;
+        }
+        .footer-links ul li a:hover { color: #e8c97a; }
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 24px;
+            text-align: center;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        .footer-bottom p { color: rgba(255,255,255,0.3); font-size: 0.8rem; }
+        .footer-bottom span { color: #c0392b; }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .head ul { gap: 14px; flex-wrap: wrap; padding: 0 16px; }
+            .hero-text h1 { font-size: 1.9rem; }
+            .rois-grid { grid-template-columns: 1fr; }
+            .porto-grid { grid-template-columns: 1fr; }
+            .vodoun-content { grid-template-columns: 1fr; }
+            .ceremonies-grid { grid-template-columns: 1fr; }
+            .footer-grid { grid-template-columns: 1fr; gap: 30px; }
+        }
+    </style>
 </head>
-<body> 
-  <div class="content">
-        <h1>A la découverte de la culture</h1>
-        
-          <nav>
+<body>
+
+    <!-- HERO -->
+    <div class="hero-culture">
+        <nav class="head">
             <ul>
-                <li><a href="about.html">about</a></li>
-                <li><a href="arts.html">arts</a></li> 
-                <li><a href="culture.html">culture</a></li>
-                <li><a href="gastronomie.html">gastronomie</a></li>
-                <li><a href="index.html">index</a></li> 
-                <li><a href="tourisme.html">tourisme</a></li>
-                <li><a href="contact.html">contact</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="arts.html">Arts</a></li>
+                <li><a href="culture.html" class="active">Culture</a></li>
+                <li><a href="gastronomie.html">Gastronomie</a></li>
+                <li><a href="index.html">Index</a></li>
+                <li><a href="tourisme.html">Tourisme</a></li>
+                <li><a href="contact.html">Contact</a></li>
             </ul>
-          </nav>
-  </div>
+        </nav>
+        <div class="hero-text">
+            <h1>À la Découverte de la Culture Béninoise</h1>
+            <p>Des royaumes millénaires aux traditions vodoun, en passant par les rois légendaires
+            du Dahomey — la culture béninoise est un héritage vivant, fier et rayonnant
+            sur le monde entier.</p>
+        </div>
+    </div>
 
- <div class="puissant">
-          <h1 >Les puissants anciens rois du Bénin</h1>
-          <p>Des hommes qui ont façonné l'histoire d'un continent.
-                Bien avant la colonisation, le territoire qui allait devenir 
-                le Bénin était gouverné par des rois d'une puissance, d'une 
-                intelligence et d'une vision exceptionnelles. Ces souverains ont
-                 bâti des empires, mené des guerres, tissé des alliances et laissé 
-                 derrière eux un héritage culturel et historique qui résonne encore aujourd'hui.
-          </p>
-  </div>
-  <div class="roi">
-        <h2>Les Rois du Royaume de Dahomey</h2>
-  </div>
-     <div class="conteneur">
+    <!-- INTRO -->
+    <div class="intro-section">
+        <p>« Des hommes qui ont façonné l'histoire d'un continent. Bien avant la colonisation, le territoire
+        qui allait devenir le Bénin était gouverné par des rois d'une puissance et d'une vision exceptionnelles. »</p>
+    </div>
 
-        <div class="fishing">
-          <h3 class="fishing h3">Houégbadja (1645 - 1685)Le Fondateur</h3>
-          <img class="fishing-img"  src="images/fishing-net.png" alt="D:\VISITE_BENIN\images\fishing-net.png">
-          <p class="fishing-p">Houégbadja est considéré comme le véritable fondateur du royaume de Dahomey. C'est lui qui
-             établit Abomey comme capitale royale et posa les premières bases d'un État organisé, puissant
-              et redouté. Sous son règne, les lois du royaume furent codifiées et les institutions royales 
-              solidement établies. Il est le père fondateur d'une dynastie qui allait durer plus de deux siècles.
-          </p>
+    <!-- ROIS DU DAHOMEY -->
+    <section class="rois-section">
+        <div class="section-header">
+            <span class="tag">Histoire Royale</span>
+            <h2>Les Puissants Rois du Royaume de Dahomey</h2>
+            <div class="divider"></div>
         </div>
-                
-        <div class="guerrier">
-          <h3 class="guerrier h3">Akaba (1685 - 1708)Le Guerrier</h3>
-          <img class="guerrier-img" src="images/swords.png" alt="D:\VISITE_BENIN\images\swords.png">
-          <p class="guerrier-p">Fils de Houégbadja, le roi Akaba poursuivit l'œuvre de son père en étendant les frontières du royaume 
-            par la force et la diplomatie. Guerrier redoutable, il consolida la puissance militaire de Dahomey et
-             prépara le terrain pour les grandes conquêtes qui allaient suivre.
-          </p>
+        <p class="rois-intro">Ces souverains ont bâti des empires, mené des guerres, tissé des alliances
+        et laissé derrière eux un héritage culturel et historique qui résonne encore aujourd'hui.</p>
+
+        <div class="rois-grid">
+            <div class="roi-card">
+                <div class="roi-card-header">
+                    <div class="roi-icon"><img src="images/fishing-net.png" alt="Houégbadja"></div>
+                    <div>
+                        <h3>Houégbadja</h3>
+                        <span class="periode">1645 – 1685 · Le Fondateur</span>
+                    </div>
+                </div>
+                <div class="roi-card-body">
+                    <p>Véritable fondateur du royaume de Dahomey, il établit Abomey comme capitale royale
+                    et posa les premières bases d'un État organisé et redouté. Il est le père fondateur
+                    d'une dynastie qui allait durer plus de deux siècles.</p>
+                </div>
+            </div>
+
+            <div class="roi-card">
+                <div class="roi-card-header">
+                    <div class="roi-icon"><img src="images/swords.png" alt="Akaba"></div>
+                    <div>
+                        <h3>Akaba</h3>
+                        <span class="periode">1685 – 1708 · Le Guerrier</span>
+                    </div>
+                </div>
+                <div class="roi-card-body">
+                    <p>Fils de Houégbadja, il poursuivit l'œuvre de son père en étendant les frontières
+                    du royaume par la force et la diplomatie. Guerrier redoutable, il consolida la
+                    puissance militaire de Dahomey.</p>
+                </div>
+            </div>
+
+            <div class="roi-card">
+                <div class="roi-card-header">
+                    <div class="roi-icon"><img src="images/cruise.png" alt="Agadja"></div>
+                    <div>
+                        <h3>Agadja</h3>
+                        <span class="periode">1708 – 1740 · Le Conquérant de la Mer</span>
+                    </div>
+                </div>
+                <div class="roi-card-body">
+                    <p>En 1727, il conquit Ouidah et donna à Dahomey un accès direct à l'Atlantique.
+                    C'est également sous son règne que les Agojie — les célèbres guerrières amazones —
+                    furent officiellement intégrées à l'armée royale.</p>
+                </div>
+            </div>
+
+            <div class="roi-card">
+                <div class="roi-card-header">
+                    <div class="roi-icon"><img src="images/buffalo (1).png" alt="Tegbessou"></div>
+                    <div>
+                        <h3>Tegbessou</h3>
+                        <span class="periode">1740 – 1774 · Le Diplomate</span>
+                    </div>
+                </div>
+                <div class="roi-card-body">
+                    <p>Souverain habile et pragmatique, il consolida les relations commerciales avec
+                    les Européens et renforça l'organisation administrative du royaume.</p>
+                </div>
+            </div>
+
+            <div class="roi-card">
+                <div class="roi-card-header">
+                    <div class="roi-icon"><img src="images/bird.png" alt="Kpengla"></div>
+                    <div>
+                        <h3>Kpengla</h3>
+                        <span class="periode">1774 – 1789 · Le Stratège</span>
+                    </div>
+                </div>
+                <div class="roi-card-body">
+                    <p>Roi guerrier et stratège, il étendit encore davantage les frontières du royaume
+                    et maintint la puissance militaire de Dahomey à son plus haut niveau.</p>
+                </div>
+            </div>
+
+            <div class="roi-card">
+                <div class="roi-card-header">
+                    <div class="roi-icon"><img src="images/fire.png" alt="Agonglo"></div>
+                    <div>
+                        <h3>Agonglo</h3>
+                        <span class="periode">1789 – 1797 · Le Bâtisseur</span>
+                    </div>
+                </div>
+                <div class="roi-card-body">
+                    <p>Amoureux des arts et de la culture, il embellit les palais royaux d'Abomey et
+                    encouragea artisans, sculpteurs et tisserands à créer des œuvres à la gloire du royaume.</p>
+                </div>
+            </div>
+
+            <div class="roi-card">
+                <div class="roi-card-header">
+                    <div class="roi-icon"><img src="images/buffalo.png" alt="Ghezo"></div>
+                    <div>
+                        <h3>Ghezo</h3>
+                        <span class="periode">1818 – 1858 · Le Grand Roi</span>
+                    </div>
+                </div>
+                <div class="roi-card-body">
+                    <p>Le plus célèbre de la dynastie. Son règne de 40 ans fut marqué par une prospérité
+                    exceptionnelle. Les Agojie atteignirent leur apogée, les arts leur plus grande splendeur.
+                    Il reste une figure vénérée au Bénin.</p>
+                </div>
+            </div>
+
+            <div class="roi-card">
+                <div class="roi-card-header">
+                    <div class="roi-icon"><img src="images/lion.png" alt="Glélé"></div>
+                    <div>
+                        <h3>Glélé</h3>
+                        <span class="periode">1858 – 1889 · Le Lion</span>
+                    </div>
+                </div>
+                <div class="roi-card-body">
+                    <p>Fils de Ghezo, "le lion qui rugit" poursuivit l'œuvre de son père. Les bas-reliefs
+                    de son palais à Abomey sont parmi les plus beaux jamais réalisés.</p>
+                </div>
+            </div>
+
+            <div class="roi-card">
+                <div class="roi-card-header">
+                    <div class="roi-icon"><img src="images/shark.png" alt="Béhanzin"></div>
+                    <div>
+                        <h3>Béhanzin</h3>
+                        <span class="periode">1889 – 1894 · Le Résistant</span>
+                    </div>
+                </div>
+                <div class="roi-card-body">
+                    <p>Surnommé "le requin qui trouble la barre", il fut le premier chef d'État africain
+                    à résister militairement à la colonisation française. Exilé en Martinique puis en Algérie,
+                    il reste symbole de dignité et de résistance.</p>
+                </div>
+            </div>
+
+            <div class="roi-card">
+                <div class="roi-card-header">
+                    <div class="roi-icon"><img src="images/footprint.png" alt="Agoli-Agbo"></div>
+                    <div>
+                        <h3>Agoli-Agbo</h3>
+                        <span class="periode">1894 – 1900 · Le Dernier Roi</span>
+                    </div>
+                </div>
+                <div class="roi-card-body">
+                    <p>Dernier roi de Dahomey, placé sur le trône par les Français après l'exil de Béhanzin.
+                    Son règne symbolisa la fin de la souveraineté du royaume et le début de la période coloniale.</p>
+                </div>
+            </div>
         </div>
-        
-        <div class="mer">
-          <h3 class="mer h3">Agadja (1708 - 1740)Le Conquérant de la Mer</h3>
-          <img class="mer-img" src="images/cruise.png" alt="D:\VISITE_BENIN\images\cruise.png">
-          <p class="mer-p">Le roi Agadja est l'une des figures les plus marquantes de l'histoire du Dahomey.
-             C'est lui qui, en 1727, conquit le royaume côtier de Xweda et s'empara de Ouidah,
-            donnant ainsi à Dahomey un accès direct à l'océan Atlantique et au commerce maritime.
-             Cette conquête transforma définitivement le royaume en puissance régionale incontournable. 
-            C'est également sous son règne que les Agojie — les célèbres guerrières amazones — furent 
-             officiellement intégrées à l'armée royale.
-          </p>
+    </section>
+
+    <!-- ROIS DE PORTO-NOVO -->
+    <section class="porto-section">
+        <div class="section-header">
+            <span class="tag">Porto-Novo</span>
+            <h2>Les Rois du Royaume de Porto-Novo</h2>
+            <div class="divider"></div>
+        </div>
+        <div class="porto-grid">
+            <div class="porto-card">
+                <h3>Tê-Agbanlin</h3>
+                <span class="periode">1700 – 1720 · Le Fondateur</span>
+                <p>Premier roi du royaume Goun de Porto-Novo, il fut le fondateur de ce qui allait devenir
+                la capitale constitutionnelle du Bénin. Visionnaire et organisateur, il établit les bases
+                d'un royaume prospère au bord de la lagune.</p>
+            </div>
+            <div class="porto-card">
+                <h3>Roi Toffa</h3>
+                <span class="periode">1874 – 1908 · Le Diplomate</span>
+                <p>Figure la plus connue de l'histoire de Porto-Novo. En 1883, il signa le traité de protectorat
+                avec la France, un acte diplomatique majeur qui changea définitivement le destin de Porto-Novo
+                et du Bénin tout entier.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ROYAUME BARIBA -->
+    <section class="bariba-section">
+        <h2>Les Rois du Royaume Bariba de Parakou</h2>
+        <div class="divider"></div>
+        <p>Les rois Wasangari, titre donné aux souverains Baribas, gouvernèrent le nord du Bénin pendant
+        des siècles. Guerriers et cavaliers exceptionnels, ils bâtirent un royaume organisé et puissant
+        dont la <strong>Fête de la Gaani</strong> célèbre encore aujourd'hui la grandeur et la fierté.</p>
+    </section>
+
+    <!-- VODOUN -->
+    <section class="vodoun-section">
+        <div class="vodoun-intro">
+            <div class="section-header light">
+                <span class="tag">Spiritualité</span>
+                <h2>Le Vodoun et ses Traditions</h2>
+                <div class="divider"></div>
+            </div>
+            <p>Bien avant que les grandes religions monothéistes ne posent leurs pieds sur le sol africain,
+            le territoire béninois était déjà le berceau d'une spiritualité profonde et universelle — le Vodoun.
+            Né sur les terres du Dahomey, le Vodoun est bien plus qu'une religion : c'est une philosophie de vie,
+            un lien sacré entre les hommes, la nature et les ancêtres.</p>
         </div>
 
-      </div>
-        
-      <div class="OX">
-        <div class="buffalo">
-           <h3 class="buffalo h3"> Tegbessou (1740 - 1774)Le Diplomate</h3>
-           <img class="buffalo-img" src="images/buffalo (1).png" alt="D:\VISITE_BENIN\images\buffalo (1).png">
-           <p class="buffalo-p">Le roi Tegbessou fut un souverain habile et pragmatique. Il consolida les relations
-             commerciales avec les Européens, notamment les Portugais et les Français, et renforça
-              l'organisation administrative du royaume.
-           </p>
+        <div class="vodoun-content">
+            <div class="vodoun-text">
+                <h3>Les Origines du Vodoun</h3>
+                <p>Le mot Vodoun vient de la langue Fon et signifie "esprit" ou "divinité cachée". Il désigne
+                à la fois la religion elle-même et les divinités — les Vodouns — qui la peuplent.</p>
+                <p>Né il y a plus de 6 000 ans au sein des peuples Fon, Ewe et Yoruba, le Vodoun est l'une
+                des religions les plus anciennes du monde, bien antérieure à la plupart des grandes traditions
+                spirituelles connues.</p>
+                <h3 style="margin-top:24px">Le Panthéon Vodoun</h3>
+                <p>Chaque divinité — appelée Vodoun ou Lwa — gouverne un domaine particulier de la vie humaine.
+                Le panthéon est immense, fascinant et en perpétuelle interaction avec le quotidien des fidèles.</p>
+            </div>
+
+            <div class="tableau-container">
+                <table class="tableau-vodoun">
+                    <thead>
+                        <tr>
+                            <th>Divinité</th>
+                            <th>Domaine</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Sakpata</td><td>Divinité de la terre et des maladies</td></tr>
+                        <tr><td>Hevioso</td><td>Divinité du tonnerre et de la justice</td></tr>
+                        <tr><td>Mami Wata</td><td>Divinité des eaux et de la fertilité</td></tr>
+                        <tr><td>Legba</td><td>Divinité des carrefours et de la communication</td></tr>
+                        <tr><td>Ogou</td><td>Divinité du fer, de la guerre et du travail</td></tr>
+                        <tr><td>Dan</td><td>Divinité du serpent arc-en-ciel et de la prospérité</td></tr>
+                        <tr><td>Zangbeto</td><td>Gardien de la nuit et de l'ordre social</td></tr>
+                        <tr><td>Fa</td><td>Divinité de la divination et du destin</td></tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
-       
-        <div class="stratège">
-          <h3 class="stratège h3">Kpengla (1774 - 1789)Le Stratège</h3>
-          <img class="bird-img" src="images/bird.png" alt="D:\VISITE_BENIN\images\bird.png">
-          <p class="bird-p">Kpengla fut un roi guerrier et stratège qui étendit encore davantage les frontières du royaume.
-             Redouté de ses voisins, il maintint la puissance militaire de Dahomey à son plus haut niveau 
-             et renforça l'autorité royale sur tous les peuples soumis.</p>
-        </div>
-        
-        <div class="batisseur">
-          <h3 class="batisseur h3">Agonglo (1789 - 1797)Le Bâtisseur</h3>
-          <img class="fire-img" src="images/fire.png" alt="D:\VISITE_BENIN\images\fire.png">
-          <p class="fire-p">Le roi Agonglo se distingua par son amour des arts et de la culture. Sous son règne, les palais royaux 
-            d'Abomey furent embellis et agrandis. Il encouragea les artisans, les sculpteurs et les tisserands à créer
-             des œuvres à la gloire du royaume. Malheureusement, il fut assassiné après seulement huit ans de règne.
-          </p>
-        </div>
-      </div>
-        
-      <div class="ROI">
-        <div class="grand">
-          <h3 class="grand h3">Ghezo (1818 - 1858)Le Grand Roi</h3>
-          <img class="grand-img" src="images/buffalo.png" alt="D:\VISITE_BENIN\images\buffalo.png">
-          <p class="grand-p">Ghezo est sans doute le roi le plus célèbre et le plus admiré de toute la dynastie de Dahomey. Son règne de 40 ans
-             fut marqué par une prospérité, une puissance et un rayonnement culturel exceptionnels. C'est sous son règne que :
-            Les Agojie atteignirent leur apogée en nombre et en puissance
-            Le commerce et l'économie du royaume connurent un essor sans précédent
-            Les arts, la musique et les cérémonies royales atteignirent leur plus grande splendeur
-            Le royaume étendit son influence sur toute la région
-            Ghezo est encore aujourd'hui une figure vénérée au Bénin.
-          </p>
-        </div>
-        
-        <div class="lion">
-           <h3 class="lion h3"> Glélé (1858 - 1889)Le Lion</h3>
-           <img class="lion-img" src="images/lion.png" alt="D:\VISITE_BENIN\images\lion.png">
-           <p class="lion-p">Fils de Ghezo, le roi Glélé — dont le nom signifie "le lion qui rugit" — poursuivit l'œuvre de son père avec 
-            fierté et détermination. Son règne fut marqué par une expansion territoriale continue et un renforcement de 
-            l'identité culturelle du royaume. Les bas-reliefs de son palais à Abomey sont parmi les plus beaux et les plus
-             expressifs jamais réalisés.
-           </p>
-        </div>
-       
-        <div class="resistant">
-           <h3 class="resistant h3"> Béhanzin (1889 - 1894)Le Résistant</h3>
-           <img class="resistant-img" src="images/shark.png" alt="D:\VISITE_BENIN\images\shark.png">
-           <p class="resistant-p">Béhanzin est le dernier grand roi de Dahomey et l'une des figures les plus
-             héroïques de toute l'histoire africaine. Surnommé "le requin qui trouble 
-             la barre", il fut le premier chef d'État africain à résister militairement
-              à la colonisation française avec une détermination et un courage extraordinaires.
-               Malgré une résistance acharnée, il fut finalement vaincu et exilé en Martinique
-                puis en Algérie en 1894. Il mourut en exil en 1906, mais son nom reste gravé à 
-                jamais dans la mémoire collective béninoise comme symbole de dignité et de résistance.
-           </p>
-        </div>
-     
-        <div class="dernier">
-          <h3 class="dernier h3"> Agoli-Agbo (1894 - 1900)Le Dernier Roi</h3>
-          <img class="dernier-img" src="images/footprint.png" alt="D:\VISITE_BENIN\images\footprint.png">
-          <p class="dernier-p">Agoli-Agbo fut le dernier roi de Dahomey, placé sur le trône par les Français après l'exil de Béhanzin.
-             Son règne symbolisa la fin de la souveraineté du royaume et le début de la période coloniale. 
-             Malgré les contraintes imposées par le pouvoir colonial, il s'efforça de préserver les traditions 
-             et la culture royale de Dahomey.
-          </p>
-        </div>
-     </div>
-  <div class="novo">  
-        <h2>Les Rois du Royaume de Porto-Novo</h2>
- </div>
-      <div class="porto">
-        <div class="fondateur">
-           <h3 class="fondateur h3">Tê-Agbanlin (1700-1720)Le Fondateur</h3>
-           <img class="fondateur-img" src="images/throne.png" alt="D:\VISITE_BENIN\images\throne.png">
-           <p class="fondateur-p">Premier roi du royaume Goun de Porto-Novo, Tê-Agdanlin fut le fondateur de ce qui allait devenir
-             la capitale constitutionnelle du Bénin. Visionnaire et organisateur, il établit les bases d'un 
-             royaume prospère au bord de la lagune.
-          </p>
+    </section>
+
+    <!-- CÉRÉMONIES ET RITUELS -->
+    <section class="ceremonies-section">
+        <div class="section-header">
+            <span class="tag">Traditions Vivantes</span>
+            <h2>Cérémonies et Rituels</h2>
+            <div class="divider"></div>
         </div>
 
-        <div class="diplomate">
-          <h3 class="diplomate h3">Roi Toffa (1874 - 1908)Le Diplomate</h3>
-          <img class="diplomate-img" src="images/cane.png" alt="D:\VISITE_BENIN\images\cane.png">
-          <p class="diplomate-p">Le roi Toffa est la figure la plus connue de l'histoire de Porto-Novo. En 1883, il signa le traité 
-            de protectorat avec la France, un acte diplomatique majeur qui changea définitivement le destin de 
-            Porto-Novo et du Bénin tout entier.
-          </p>
-        </div>
-      </div>
-        
-        <div class="royaume">
-          <h2> Les Rois du Royaume Bariba de Parakou</h2>
-         <p>Les rois Wasangari, titre donné aux souverains Baribas, gouvernèrent le nord du Bénin pendant des siècles. 
-            Guerriers et cavaliers exceptionnels, ils bâtirent un royaume organisé et puissant dont la Fête de la Gaani 
-            célèbre encore aujourd'hui la grandeur et la fierté.
-         </p>
-        </div>
-        
+        <div class="ceremonies-grid">
 
-        <div class="divinité">
-          
-          <div class="vodoun">
-            <h1>Le Vodoun et ses Traditions</h1>
-            <p class="vodoun-p">Une religion née au Bénin, rayonnante sur le monde entier.
-              Bien avant que les grandes religions monothéistes ne posent leurs pieds sur le sol africain, le territoire
-             béninois était déjà le berceau d'une spiritualité profonde, complexe et universelle "le Vodoun". Né sur les
-              terres du Dahomey, le Vodoun est bien plus qu'une religion, c'est une philosophie de vie, une vision du monde,
-               un lien sacré entre les hommes, la nature et les ancêtres.</p>
-          </div>
-          <div class="vodoun">
-            <h2 class="vodoun-h2">Les Origines du Vodoun</h2>
-            <p class="vodoun-p">Le mot Vodoun vient de la langue Fon et signifie littéralement "esprit" ou "divinité cachée". Il désigne à la fois
-               la religion elle-même et les divinités appelées " Vodouns" qui la peuplent. Ces divinités sont des forces de la nature, 
-              des esprits ancestraux et des puissances invisibles qui régissent chaque aspect de la vie humaine.
-               Le Vodoun est né il y a plus de 6 000 ans sur le territoire de l'actuel Bénin, au sein des peuples Fon, Ewe et Yoruba.
-              C'est l'une des religions les plus anciennes du monde, bien antérieure à la plupart des grandes traditions spirituelles connues.</p>
-          </div>
-          <div class="vodoun">
-            <h2 class="vodoun-h2">Les Grandes Divinités Vodoun</h2>
-            <p class="vodoun-p">Le panthéon Vodoun est immense et fascinant. Chaque divinité appelée "Vodoun" ou "Lwa", gouverne un domaine particulier de la vie :</p>
-          </div>
-         
-        </div>
-       <div class="tableau-vodoun">
-         <h2>Les Grandes Divinités Vodoun</h2>
-      <table border="1" class="tableau-vodoun h2">
-        <thead class="thead">
-            <tr>
-                <th class="thead th">Divinité</th>
-                <th>Domaine</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr class="tbody tr">
-                <td>Sakpata</td>
-                <td>Divinité de la terre et des maladies</td>
-            </tr>
-            <tr class="tbody tr">
-                <td>Hevioso</td>
-                <td>Divinité du tonnerre et de la justice</td>
-            </tr>
-            <tr class="tbody tr">
-                <td>Mami Wata</td>
-                <td>Divinité des eaux et de la fertilité</td>
-            </tr>
-            <tr>
-                <td>Legba</td>
-                <td>Divinité des carrefours et de la communication</td>
-            </tr>
-            <tr>
-                <td>Ogou</td>
-                <td>Divinité du fer, de la guerre et du travail</td>
-            </tr>
-            <tr>
-                <td>Dan</td>
-                <td>Divinité du serpent arc-en-ciel et de la prospérité</td>
-            </tr>
-            <tr>
-                <td>Zangbeto</td>
-                <td>Gardien de la nuit et de l'ordre social</td>
-            </tr>
-            <tr>
-                <td>Fa</td>
-                <td>Divinité de la divination et du destin</td>
-            </tr>
-        </tbody>
-    </table>
-</div>
-<h2>Les Cérémonies et Rituels</h2>
-<p></p>
+            <div class="ceremonie-card">
+                <img src="images/vodoun.jpg" alt="Fête du Vodoun">
+                <div class="ceremonie-card-body">
+                    <h3>La Fête du Vodoun</h3>
+                    <span class="lieu">10 Janvier · Ouidah</span>
+                    <p>Célébrée chaque année le 10 janvier à Ouidah, la Fête nationale du Vodoun rassemble
+                    des milliers de fidèles, de pèlerins et de touristes du monde entier. Les rues se remplissent
+                    de danses, de chants et de cérémonies rituelles en l'honneur des divinités.</p>
+                </div>
+            </div>
 
-    
+            <div class="ceremonie-card">
+                <img src="images/zangbeto.jpg" alt="Sortie du Zangbéto">
+                <div class="ceremonie-card-body">
+                    <h3>La Sortie du Zangbéto</h3>
+                    <span class="lieu">Nuit · Villages côtiers</span>
+                    <p>Le Zangbéto est le gardien de la nuit dans la tradition Goun et Fon. Son costume
+                    tourbillonnant de paille et de raphia parcourt les rues dans l'obscurité au son des
+                    tambours, chassant les mauvais esprits et veillant sur la communauté.</p>
+                </div>
+            </div>
+
+            <div class="ceremonie-card">
+                <img src="images/Gaani.jpg" alt="Fête de la Gaani">
+                <div class="ceremonie-card-body">
+                    <h3>La Fête de la Gaani</h3>
+                    <span class="lieu">Parakou · Royaume Bariba</span>
+                    <p>Grande fête royale du peuple Bariba de Parakou, la Gaani célèbre la victoire des rois
+                    Wasangari sur leurs ennemis. Elle est marquée par des démonstrations équestres spectaculaires,
+                    des danses guerrières et des tenues royales somptueuses.</p>
+                </div>
+            </div>
+
+            <div class="ceremonie-card">
+                <img src="images/egungun.jpg" alt="Cérémonie Egungun">
+                <div class="ceremonie-card-body">
+                    <h3>La Cérémonie Egungun</h3>
+                    <span class="lieu">Porto-Novo & région Yoruba</span>
+                    <p>L'Egungun est la manifestation des esprits des ancêtres parmi les vivants. Des danseurs
+                    masqués revêtent des costumes sacrés représentant les défunts, rappelant aux vivants leur
+                    lien indéfectible avec leurs aïeux et le monde invisible.</p>
+                </div>
+            </div>
+
+            <div class="ceremonie-card">
+                <img src="images/Python.jpg" alt="Culte du Serpent Dan">
+                <div class="ceremonie-card-body">
+                    <h3>Le Culte du Serpent Dan</h3>
+                    <span class="lieu">Ouidah · Temple des Pythons</span>
+                    <p>À Ouidah, le Temple des Pythons abrite des dizaines de serpents sacrés vénérés comme
+                    incarnations de la divinité Dan. Les fidèles les portent autour du cou comme signe de
+                    bénédiction. Ce culte ancestral attire visiteurs et croyants de tout le continent.</p>
+                </div>
+            </div>
+
+            <div class="ceremonie-card">
+                <img src="images/Wata.jpg" alt="Rituel de Mami Wata">
+                <div class="ceremonie-card-body">
+                    <h3>Le Rituel de Mami Wata</h3>
+                    <span class="lieu">Côtes & plans d'eau du Bénin</span>
+                    <p>Mami Wata, divinité des eaux, est invoquée lors de rituels au bord de la mer, des lagunes
+                    et des rivières. Ses fidèles lui offrent des parfums, des miroirs et des tissus colorés.
+                    Ces cérémonies nocturnes témoignent du lien profond entre le peuple béninois et la nature.</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- CITATION -->
+    <div class="quote-section">
+        <blockquote>
+            La culture béninoise est un héritage vivant — elle ne se visite pas, elle se ressent.
+        </blockquote>
+        <cite>— Le Bénin Et Ses Découvertes</cite>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <h3>Le Bénin Et Ses Découvertes</h3>
+                <p>Un espace dédié à la découverte d'une nation fascinante, riche de son histoire,
+                de sa culture et de sa diversité. Explorez, apprenez, émerveillez-vous.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Navigation</h4>
+                <ul>
+                    <li><a href="about.html">À Propos</a></li>
+                    <li><a href="arts.html">Arts</a></li>
+                    <li><a href="culture.html">Culture</a></li>
+                    <li><a href="gastronomie.html">Gastronomie</a></li>
+                    <li><a href="tourisme.html">Tourisme</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Culture</h4>
+                <ul>
+                    <li><a href="#">Rois du Dahomey</a></li>
+                    <li><a href="#">Vodoun & Spiritualité</a></li>
+                    <li><a href="#">Cérémonies & Rituels</a></li>
+                    <li><a href="#">Fête du Vodoun</a></li>
+                    <li><a href="#">Egungun & Zangbéto</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 Le Bénin Et Ses Découvertes — Fait avec <span>❤</span> pour le Bénin</p>
+        </div>
+    </footer>
+
 </body>
 </html>

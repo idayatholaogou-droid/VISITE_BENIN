@@ -1,46 +1,642 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Le Bénin Et Ses Découvertes</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            color: #1a1a1a;
+            background-color: #fff;
+        }
+
+        /* ===== NAVIGATION ===== */
+        .head {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 10;
+            background: rgba(0,0,0,0.25);
+            padding: 18px 0;
+        }
+
+        .head ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+        }
+
+        .head ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-family: 'Arial', sans-serif;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: color 0.3s;
+        }
+
+        .head ul li a:hover {
+            color: #e8c97a;
+        }
+
+        .head ul li a.active {
+            color: #c0392b;
+            border-bottom: 2px solid #c0392b;
+            padding-bottom: 2px;
+        }
+
+        /* ===== HERO ===== */
+        .Info {
+            background-image: url(images/Amazone.webp);
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            position: relative;
+            color: white;
+            text-align: center;
+        }
+
+        .Info::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 40%;
+            background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.6));
+        }
+
+        .hero {
+            position: absolute;
+            bottom: 10%;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            color: white;
+            z-index: 2;
+            width: 80%;
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
+            margin-bottom: 16px;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.05rem;
+            line-height: 1.8;
+            text-shadow: 1px 1px 4px rgba(0,0,0,0.8);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* ===== CHIFFRES CLÉS ===== */
+        .stats-bar {
+            background: #c0392b;
+            padding: 30px 0;
+        }
+
+        .stats-grid {
+            display: flex;
+            justify-content: center;
+            gap: 0;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .stat-item {
+            flex: 1;
+            text-align: center;
+            padding: 10px 20px;
+            border-right: 1px solid rgba(255,255,255,0.3);
+        }
+
+        .stat-item:last-child {
+            border-right: none;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #fff;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 0.78rem;
+            color: rgba(255,255,255,0.8);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 4px;
+            display: block;
+        }
+
+        /* ===== SECTION À PROPOS ===== */
+        .about-section {
+            padding: 80px 40px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-header .tag {
+            font-size: 0.75rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: #c0392b;
+            font-family: Arial, sans-serif;
+            font-weight: 700;
+        }
+
+        .section-header h2 {
+            font-size: 2.2rem;
+            color: #1a1a1a;
+            margin-top: 10px;
+            font-weight: 700;
+        }
+
+        .section-header .divider {
+            width: 60px;
+            height: 3px;
+            background: #c0392b;
+            margin: 16px auto 0;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: start;
+        }
+
+        .about-text p {
+            font-size: 1rem;
+            line-height: 1.9;
+            color: #444;
+            margin-bottom: 20px;
+        }
+
+        .about-text p:first-child::first-letter {
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: #c0392b;
+            float: left;
+            line-height: 0.8;
+            margin-right: 8px;
+            margin-top: 6px;
+        }
+
+        .about-highlights {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .highlight-card {
+            background: #fafafa;
+            border-left: 4px solid #c0392b;
+            padding: 20px 24px;
+            border-radius: 0 6px 6px 0;
+        }
+
+        .highlight-card h4 {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: #c0392b;
+            font-family: Arial, sans-serif;
+            margin-bottom: 6px;
+        }
+
+        .highlight-card p {
+            font-size: 0.95rem;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        /* ===== SECTION VILLES ===== */
+        .cities-section {
+            background: #f7f4f0;
+            padding: 80px 40px;
+        }
+
+        .cities-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+            max-width: 1100px;
+            margin: 50px auto 0;
+        }
+
+        .city-card {
+            background: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .city-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.14);
+        }
+
+        .city-card-top {
+            background: #c0392b;
+            padding: 28px 20px 20px;
+            text-align: center;
+        }
+
+        .city-icon {
+            font-size: 2rem;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .city-card-top h3 {
+            color: #fff;
+            font-size: 1.1rem;
+            font-weight: 700;
+        }
+
+        .city-card-top .city-role {
+            font-size: 0.72rem;
+            color: rgba(255,255,255,0.75);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-top: 4px;
+        }
+
+        .city-card-body {
+            padding: 20px;
+        }
+
+        .city-card-body p {
+            font-size: 0.88rem;
+            color: #666;
+            line-height: 1.7;
+        }
+
+        /* ===== CITATION ===== */
+        .quote-section {
+            background: #1a1a1a;
+            padding: 70px 40px;
+            text-align: center;
+        }
+
+        .quote-section blockquote {
+            font-size: 1.6rem;
+            color: #fff;
+            font-style: italic;
+            max-width: 750px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .quote-section blockquote::before {
+            content: '"';
+            font-size: 4rem;
+            color: #c0392b;
+            line-height: 0;
+            vertical-align: -1.5rem;
+            margin-right: 8px;
+        }
+
+        .quote-section cite {
+            display: block;
+            margin-top: 20px;
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.5);
+            font-style: normal;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: #111;
+            padding: 50px 40px 24px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 50px;
+            max-width: 1100px;
+            margin: 0 auto 40px;
+        }
+
+        .footer-brand h3 {
+            color: #fff;
+            font-size: 1.1rem;
+            margin-bottom: 12px;
+        }
+
+        .footer-brand p {
+            color: rgba(255,255,255,0.45);
+            font-size: 0.85rem;
+            line-height: 1.8;
+        }
+
+        .footer-links h4 {
+            color: #c0392b;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 16px;
+            font-family: Arial, sans-serif;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links ul li a {
+            color: rgba(255,255,255,0.5);
+            text-decoration: none;
+            font-size: 0.88rem;
+            transition: color 0.3s;
+        }
+
+        .footer-links ul li a:hover {
+            color: #e8c97a;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 24px;
+            text-align: center;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .footer-bottom p {
+            color: rgba(255,255,255,0.3);
+            font-size: 0.8rem;
+        }
+
+        .footer-bottom span {
+            color: #c0392b;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .head ul {
+                gap: 14px;
+                flex-wrap: wrap;
+                padding: 0 16px;
+            }
+
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .stats-grid {
+                flex-wrap: wrap;
+            }
+
+            .stat-item {
+                flex: 1 1 40%;
+                border-right: none;
+                border-bottom: 1px solid rgba(255,255,255,0.2);
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .cities-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+        }
+    </style>
 </head>
 <body>
+
+    <!-- HERO -->
     <div class="Info">
-       
-        <h1>Le Bénin Et Ses Découvertes</h1>
-          <nav class="head">
+        <nav class="head">
             <ul>
-                <li><a href="about.html">about</a></li>
-                <li><a href="arts.html">arts</a></li> 
-                <li><a href="culture.html">culture</a></li>
-                <li><a href="gastronomie.html">gastronomie</a></li>
-                <li><a href="index.html">index</a></li> 
-                <li><a href="tourisme.html">tourisme</a></li>
-                <li><a href="contact.html">contact</a></li>
+                <li><a href="about.html" class="active">About</a></li>
+                <li><a href="arts.html">Arts</a></li>
+                <li><a href="culture.html">Culture</a></li>
+                <li><a href="gastronomie.html">Gastronomie</a></li>
+                <li><a href="index.html">Index</a></li>
+                <li><a href="tourisme.html">Tourisme</a></li>
+                <li><a href="contact.html">Contact</a></li>
             </ul>
-          </nav>
-          <div class="hero">
+        </nav>
+
+        <div class="hero">
             <h1>Aux Origines d'une civilisation oubliée</h1>
-             <p>Bien avant que le monde ne pose les yeux sur cette terre d'Afrique de l'Ouest,
-             le territoire qui allait devenir le Bénin était déjà le théâtre de grandes aventures humaines. 
-             Des peuples courageux, des royaumes puissants, des civilisations brillantes s'y succédèrent 
-             pendant des millénaires,tissant une histoire riche, complexe et fascinante.
-            </p>
-          </div>
+            <p>Bien avant que le monde ne pose les yeux sur cette terre d'Afrique de l'Ouest,
+            le territoire qui allait devenir le Bénin était déjà le théâtre de grandes aventures humaines.
+            Des peuples courageux, des royaumes puissants, des civilisations brillantes s'y succédèrent
+            pendant des millénaires, tissant une histoire riche, complexe et fascinante.</p>
+        </div>
     </div>
-    <h2>A Propos du bénin</h2>
-    <p>Bienvenue sur Le Bénin Et Ses Découvertes — un espace dédié à la découverte d'une nation fascinante,
-        riche de son histoire, de sa culture et de sa diversité.Le Bénin est un pays d'Afrique de l'Ouest 
-        couvrant une superficie de 114 763 km², peuplé d'environ 13 millions d'habitants aux traditions et
-         cultures millénaires. Anciennement connu sous le nom de Dahomey, ce pays qui s'étire sur plus de 700 km 
-         du nord au sud est une véritable mosaïque humaine, spirituelle et culturelle qui ne cesse d'émerveiller.
-        Organisé autour de quatre villes à statut particulier(Porto-Novo, Cotonou, Parakou, Abomey-Calavi), le Bénin dévoile ses multiples visages à travers ses 
-        cités emblématiques. Cotonou, capitale économique et cœur battant du pays, Porto-Novo, capitale constitutionnelle
-         héritière des anciens royaumes Goun, Parakou, carrefour dynamique du septentrion, et Abomey-Calavi, ville universitaire
-          et moderne en plein essor — chacune raconte à sa manière l'histoire d'un peuple debout et fier.
-        Ce site est une invitation au voyage, à la découverte et au partage. Plongez dans les arts, la gastronomie, la culture 
-        et le tourisme d'un pays qui, une fois connu, ne vous quitte plus jamais.
-        Bienvenue au Bénin — Bienvenue chez vous.</p>
+
+    <!-- CHIFFRES CLÉS -->
+    <div class="stats-bar">
+        <div class="stats-grid">
+            <div class="stat-item">
+                <span class="stat-number">114 763</span>
+                <span class="stat-label">km² de superficie</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">~13M</span>
+                <span class="stat-label">habitants</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">42+</span>
+                <span class="stat-label">groupes ethniques</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">700 km</span>
+                <span class="stat-label">du nord au sud</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">1960</span>
+                <span class="stat-label">année d'indépendance</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- À PROPOS -->
+    <section class="about-section">
+        <div class="section-header">
+            <span class="tag">Découvrez</span>
+            <h2>À Propos du Bénin</h2>
+            <div class="divider"></div>
+        </div>
+
+        <div class="about-content">
+            <div class="about-text">
+                <p>Bienvenue sur <strong>Le Bénin Et Ses Découvertes</strong> — un espace dédié à la découverte
+                d'une nation fascinante, riche de son histoire, de sa culture et de sa diversité. Le Bénin est
+                un pays d'Afrique de l'Ouest couvrant une superficie de 114 763 km², peuplé d'environ 13 millions
+                d'habitants aux traditions et cultures millénaires.</p>
+
+                <p>Anciennement connu sous le nom de <strong>Dahomey</strong>, ce pays qui s'étire sur plus de
+                700 km du nord au sud est une véritable mosaïque humaine, spirituelle et culturelle qui ne cesse
+                d'émerveiller. Berceau du Vodoun, patrie des Amazones de Dahomey et héritier de royaumes
+                légendaires, le Bénin porte en lui une fierté millénaire.</p>
+
+                <p>Ce site est une invitation au voyage, à la découverte et au partage. Plongez dans les arts,
+                la gastronomie, la culture et le tourisme d'un pays qui, une fois connu, ne vous quitte plus jamais.
+                <em>Bienvenue au Bénin — Bienvenue chez vous.</em></p>
+            </div>
+
+            <div class="about-highlights">
+                <div class="highlight-card">
+                    <h4>Capitale constitutionnelle</h4>
+                    <p>Porto-Novo, héritière des anciens royaumes Goun, demeure la capitale officielle du pays, riche d'une architecture coloniale préservée.</p>
+                </div>
+                <div class="highlight-card">
+                    <h4>Capitale économique</h4>
+                    <p>Cotonou, cœur battant et poumon économique du Bénin, concentre l'essentiel des activités commerciales et diplomatiques.</p>
+                </div>
+                <div class="highlight-card">
+                    <h4>Patrimoine mondial</h4>
+                    <p>Le Bénin abrite des sites classés UNESCO, dont les palais royaux d'Abomey, témoins de la grandeur du Royaume de Dahomey.</p>
+                </div>
+                <div class="highlight-card">
+                    <h4>Berceau du Vodoun</h4>
+                    <p>Religion ancestrale née sur cette terre, le Vodoun est une philosophie vivante pratiquée par des millions de fidèles à travers le monde.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- LES 4 VILLES -->
+    <section class="cities-section">
+        <div class="section-header">
+            <span class="tag">Géographie</span>
+            <h2>Les Quatre Villes à Statut Particulier</h2>
+            <div class="divider"></div>
+        </div>
+
+        <div class="cities-grid">
+            <div class="city-card">
+                <div class="city-card-top">
+                    <span class="city-icon">🏛️</span>
+                    <h3>Porto-Novo</h3>
+                    <div class="city-role">Capitale constitutionnelle</div>
+                </div>
+                <div class="city-card-body">
+                    <p>Siège de l'Assemblée nationale, Porto-Novo est une ville chargée d'histoire, berceau de la royauté Goun et de l'héritage colonial.</p>
+                </div>
+            </div>
+
+            <div class="city-card">
+                <div class="city-card-top">
+                    <span class="city-icon">🌆</span>
+                    <h3>Cotonou</h3>
+                    <div class="city-role">Capitale économique</div>
+                </div>
+                <div class="city-card-body">
+                    <p>Métropole dynamique et premier port du pays, Cotonou concentre les affaires, l'administration et la vie culturelle moderne du Bénin.</p>
+                </div>
+            </div>
+
+            <div class="city-card">
+                <div class="city-card-top">
+                    <span class="city-icon">🕌</span>
+                    <h3>Parakou</h3>
+                    <div class="city-role">Carrefour du septentrion</div>
+                </div>
+                <div class="city-card-body">
+                    <p>Porte d'entrée du nord du Bénin, Parakou est un carrefour commercial et culturel, point de rencontre entre les traditions du Sahel et du Sud.</p>
+                </div>
+            </div>
+
+            <div class="city-card">
+                <div class="city-card-top">
+                    <span class="city-icon">🎓</span>
+                    <h3>Abomey-Calavi</h3>
+                    <div class="city-role">Ville universitaire</div>
+                </div>
+                <div class="city-card-body">
+                    <p>Ville universitaire en plein essor accueillant l'Université d'Abomey-Calavi, plus grande institution académique du pays.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CITATION -->
+    <div class="quote-section">
+        <blockquote>
+            Le Bénin — une fois connu, ne vous quitte plus jamais.
+        </blockquote>
+        <cite>— Le Bénin Et Ses Découvertes</cite>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <h3>Le Bénin Et Ses Découvertes</h3>
+                <p>Un espace dédié à la découverte d'une nation fascinante, riche de son histoire,
+                de sa culture et de sa diversité. Explorez, apprenez, émerveillez-vous.</p>
+            </div>
+
+            <div class="footer-links">
+                <h4>Navigation</h4>
+                <ul>
+                    <li><a href="about.html">À Propos</a></li>
+                    <li><a href="arts.html">Arts</a></li>
+                    <li><a href="culture.html">Culture</a></li>
+                    <li><a href="gastronomie.html">Gastronomie</a></li>
+                    <li><a href="tourisme.html">Tourisme</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-links">
+                <h4>Thématiques</h4>
+                <ul>
+                    <li><a href="#">Royaume de Dahomey</a></li>
+                    <li><a href="#">Vodoun & Spiritualité</a></li>
+                    <li><a href="#">Gastronomie béninoise</a></li>
+                    <li><a href="#">Sites UNESCO</a></li>
+                    <li><a href="#">Amazones de Dahomey</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>© 2026 Le Bénin Et Ses Découvertes — Fait avec <span>❤</span> pour le Bénin</p>
+        </div>
+    </footer>
+
 </body>
 </html>
