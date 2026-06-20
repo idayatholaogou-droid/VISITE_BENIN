@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Le Bénin Et Ses Découvertes</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Georgia', serif;
+            color: #1a1a1a;
+            background-color: #fff;
+        }
+
+        /* ===== NAVIGATION ===== */
+        .head {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%;
+            z-index: 10;
+            background: rgba(0,0,0,0.30);
+            padding: 18px 0;
+        }
+        .head ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+        }
+        .head ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-family: Arial, sans-serif;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: color 0.3s;
+        }
+        .head ul li a:hover { color: #e8c97a; }
+        .head ul li a.active {
+            color: #c0392b;
+            border-bottom: 2px solid #c0392b;
+            padding-bottom: 2px;
+        }
+
+        /* ===== HERO ===== */
+        .hero-index {
+            background-image: url('images/Amazone.webp');
+            background-size: cover;
+            background-position: center top;
+            height: 100vh;
+            position: relative;
+            color: white;
+            text-align: center;
+        }
+        .hero-index::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(0,0,0,0.45);
+        }
+        .hero-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 2;
+            width: 80%;
+        }
+        .hero-content .site-tag {
+            font-size: 0.75rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: #e8c97a;
+            font-family: Arial, sans-serif;
+            font-weight: 700;
+            display: block;
+            margin-bottom: 20px;
+        }
+        .hero-content h1 {
+            font-size: 3.8rem;
+            font-weight: 700;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.8);
+            margin-bottom: 20px;
+            line-height: 1.15;
+        }
+        .hero-content p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            text-shadow: 1px 1px 5px rgba(0,0,0,0.9);
+            max-width: 650px;
+            margin: 0 auto 32px;
+        }
+        .hero-btn {
+            display: inline-block;
+            background: #c0392b;
+            color: #fff;
+            text-decoration: none;
+            font-family: Arial, sans-serif;
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            padding: 14px 36px;
+            border-radius: 2px;
+            transition: background 0.3s;
+        }
+        .hero-btn:hover { background: #a93226; }
+
+        /* ===== SECTION HEADER ===== */
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        .section-header .tag {
+            font-size: 0.75rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: #c0392b;
+            font-family: Arial, sans-serif;
+            font-weight: 700;
+        }
+        .section-header h2 {
+            font-size: 2.2rem;
+            color: #1a1a1a;
+            margin-top: 10px;
+            font-weight: 700;
+        }
+        .section-header .divider {
+            width: 60px;
+            height: 3px;
+            background: #c0392b;
+            margin: 16px auto 0;
+        }
+        .section-header.light h2 { color: #fff; }
+        .section-header.light .tag { color: #e8c97a; }
+        .section-header.light .divider { background: #e8c97a; }
+
+        /* ===== CHIFFRES CLÉS ===== */
+        .stats-bar {
+            background: #c0392b;
+            padding: 30px 0;
+        }
+        .stats-grid {
+            display: flex;
+            justify-content: center;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .stat-item {
+            flex: 1;
+            text-align: center;
+            padding: 10px 20px;
+            border-right: 1px solid rgba(255,255,255,0.3);
+        }
+        .stat-item:last-child { border-right: none; }
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #fff;
+            display: block;
+        }
+        .stat-label {
+            font-size: 0.78rem;
+            color: rgba(255,255,255,0.8);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 4px;
+            display: block;
+        }
+
+        /* ===== INTRO ===== */
+        .intro-section {
+            padding: 80px 40px;
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 70px;
+            align-items: center;
+        }
+        .intro-text h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 20px;
+            line-height: 1.3;
+        }
+        .intro-text h2 span { color: #c0392b; }
+        .intro-text p {
+            font-size: 0.97rem;
+            color: #555;
+            line-height: 1.9;
+            margin-bottom: 16px;
+        }
+        .intro-text .lien {
+            display: inline-block;
+            color: #c0392b;
+            text-decoration: none;
+            font-family: Arial, sans-serif;
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            border-bottom: 2px solid #c0392b;
+            padding-bottom: 2px;
+            margin-top: 8px;
+            transition: color 0.3s;
+        }
+        .intro-text .lien:hover { color: #a93226; }
+        .intro-image img {
+            width: 100%;
+            height: 420px;
+            object-fit: cover;
+            border-radius: 4px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+        }
+
+        /* ===== SECTIONS DU SITE ===== */
+        .sections-site {
+            background: #f7f4f0;
+            padding: 80px 40px;
+        }
+        .sections-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            max-width: 1100px;
+            margin: 50px auto 0;
+        }
+        .section-card {
+            background: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+            text-decoration: none;
+            display: block;
+        }
+        .section-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 10px 28px rgba(0,0,0,0.14);
+        }
+        .section-card-top {
+            height: 180px;
+            position: relative;
+            overflow: hidden;
+        }
+        .section-card-top img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s;
+        }
+        .section-card:hover .section-card-top img {
+            transform: scale(1.05);
+        }
+        .section-card-top .overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(0,0,0,0.35);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .section-card-top .overlay span {
+            font-size: 2.5rem;
+        }
+        .section-card-body {
+            padding: 22px;
+            border-top: 3px solid #c0392b;
+        }
+        .section-card-body h3 {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 8px;
+        }
+        .section-card-body p {
+            font-size: 0.87rem;
+            color: #777;
+            line-height: 1.7;
+        }
+        .section-card-body .voir {
+            display: inline-block;
+            margin-top: 12px;
+            font-size: 0.72rem;
+            font-family: Arial, sans-serif;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: #c0392b;
+        }
+
+        /* ===== CITATION ===== */
+        .quote-section {
+            background: #1a1a1a;
+            padding: 80px 40px;
+            text-align: center;
+        }
+        .quote-section blockquote {
+            font-size: 1.8rem;
+            color: #fff;
+            font-style: italic;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+        .quote-section blockquote::before {
+            content: '"';
+            font-size: 5rem;
+            color: #c0392b;
+            line-height: 0;
+            vertical-align: -1.8rem;
+            margin-right: 8px;
+        }
+        .quote-section cite {
+            display: block;
+            margin-top: 24px;
+            font-size: 0.82rem;
+            color: rgba(255,255,255,0.4);
+            font-style: normal;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        /* ===== ÉVÉNEMENTS ===== */
+        .events-section {
+            padding: 80px 40px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        .events-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-top: 50px;
+        }
+        .event-card {
+            border-radius: 8px;
+            padding: 28px;
+            background: #fafafa;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+            border-left: 4px solid #c0392b;
+            transition: transform 0.3s;
+        }
+        .event-card:hover { transform: translateY(-4px); }
+        .event-date {
+            font-size: 0.72rem;
+            font-family: Arial, sans-serif;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #c0392b;
+            font-weight: 700;
+            margin-bottom: 10px;
+            display: block;
+        }
+        .event-card h3 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 10px;
+        }
+        .event-card p {
+            font-size: 0.87rem;
+            color: #666;
+            line-height: 1.7;
+        }
+
+        /* ===== FOOTER ===== */
+        footer { background: #111; padding: 50px 40px 24px; }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 50px;
+            max-width: 1100px;
+            margin: 0 auto 40px;
+        }
+        .footer-brand h3 { color: #fff; font-size: 1.1rem; margin-bottom: 12px; }
+        .footer-brand p { color: rgba(255,255,255,0.45); font-size: 0.85rem; line-height: 1.8; }
+        .footer-links h4 {
+            color: #c0392b;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 16px;
+            font-family: Arial, sans-serif;
+        }
+        .footer-links ul { list-style: none; }
+        .footer-links ul li { margin-bottom: 10px; }
+        .footer-links ul li a {
+            color: rgba(255,255,255,0.5);
+            text-decoration: none;
+            font-size: 0.88rem;
+            transition: color 0.3s;
+        }
+        .footer-links ul li a:hover { color: #e8c97a; }
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 24px;
+            text-align: center;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        .footer-bottom p { color: rgba(255,255,255,0.3); font-size: 0.8rem; }
+        .footer-bottom span { color: #c0392b; }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .head ul { gap: 14px; flex-wrap: wrap; padding: 0 16px; }
+            .hero-content h1 { font-size: 2.2rem; }
+            .stats-grid { flex-wrap: wrap; }
+            .stat-item { flex: 1 1 40%; border-right: none; border-bottom: 1px solid rgba(255,255,255,0.2); }
+            .intro-section { grid-template-columns: 1fr; gap: 40px; }
+            .sections-grid { grid-template-columns: 1fr 1fr; }
+            .events-grid { grid-template-columns: 1fr; }
+            .footer-grid { grid-template-columns: 1fr; gap: 30px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HERO -->
+    <div class="hero-index">
+        <nav class="head">
+            <ul>
+                <li><a href="index.html" class="active">Index</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="arts.html">Arts</a></li>
+                <li><a href="culture.html">Culture</a></li>
+                <li><a href="gastronomie.html">Gastronomie</a></li>
+                <li><a href="tourisme.html">Tourisme</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+        <div class="hero-content">
+            <span class="site-tag">Bienvenue sur</span>
+            <h1>Le Bénin Et Ses Découvertes</h1>
+            <p>Partez à la découverte d'une nation fascinante — royaumes légendaires, arts ancestraux,
+            spiritualité vodoun, saveurs authentiques et paysages à couper le souffle.</p>
+            <a href="about.html" class="hero-btn">Commencer l'exploration</a>
+        </div>
+    </div>
+
+    <!-- CHIFFRES CLÉS -->
+    <div class="stats-bar">
+        <div class="stats-grid">
+            <div class="stat-item">
+                <span class="stat-number">114 763</span>
+                <span class="stat-label">km² de superficie</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">~13M</span>
+                <span class="stat-label">habitants</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">42+</span>
+                <span class="stat-label">groupes ethniques</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">6 000</span>
+                <span class="stat-label">ans de Vodoun</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">1960</span>
+                <span class="stat-label">indépendance</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- INTRO -->
+    <section class="intro-section">
+        <div class="intro-text">
+            <h2>Un pays qui ne vous <span>quitte plus</span> jamais</h2>
+            <p>Le Bénin est un pays d'Afrique de l'Ouest anciennement connu sous le nom de Dahomey.
+            Berceau du Vodoun, patrie des Amazones et héritier de royaumes millénaires, il porte en
+            lui une fierté et une richesse culturelle incomparables.</p>
+            <p>De la côte atlantique aux savanes du nord, en passant par les palais d'Abomey classés
+            à l'UNESCO, chaque coin de ce pays recèle une histoire à raconter, une tradition à découvrir,
+            une saveur à goûter.</p>
+            <a href="about.html" class="lien">En savoir plus →</a>
+        </div>
+        <div class="intro-image">
+            <img src="images/Amazone.webp" alt="Statue de l'Amazone - Bénin">
+        </div>
+    </section>
+
+    <!-- SECTIONS DU SITE -->
+    <section class="sections-site">
+        <div class="section-header">
+            <span class="tag">Explorer</span>
+            <h2>Les Thématiques du Site</h2>
+            <div class="divider"></div>
+        </div>
+
+        <div class="sections-grid">
+            <a href="about.html" class="section-card">
+                <div class="section-card-top">
+                    <img src="images/Amazone.webp" alt="À propos du Bénin">
+                </div>
+                <div class="section-card-body">
+                    <h3>À Propos du Bénin</h3>
+                    <p>Histoire, géographie, villes emblématiques et chiffres clés d'une nation fière.</p>
+                    <span class="voir">Découvrir →</span>
+                </div>
+            </a>
+
+            <a href="arts.html" class="section-card">
+                <div class="section-card-top">
+                    <img src="images/mur.jpg" alt="Arts du Bénin">
+                </div>
+                <div class="section-card-body">
+                    <h3>Arts & Artisanat</h3>
+                    <p>Bas-reliefs d'Abomey, appliqués sur tissu, sculptures vodoun et artistes contemporains.</p>
+                    <span class="voir">Découvrir →</span>
+                </div>
+            </a>
+
+            <a href="culture.html" class="section-card">
+                <div class="section-card-top">
+                    <img src="images/Porte.jpg" alt="Culture du Bénin">
+                </div>
+                <div class="section-card-body">
+                    <h3>Culture & Histoire</h3>
+                    <p>Les rois du Dahomey, le Vodoun et ses traditions, cérémonies et rituels ancestraux.</p>
+                    <span class="voir">Découvrir →</span>
+                </div>
+            </a>
+
+            <a href="gastronomie.html" class="section-card">
+                <div class="section-card-top">
+                    <img src="images/Tokpa.jpg" alt="Gastronomie du Bénin">
+                </div>
+                <div class="section-card-body">
+                    <h3>Gastronomie</h3>
+                    <p>Akassa, sauce gluante, sodabi, street food — les saveurs authentiques du Bénin.</p>
+                    <span class="voir">Découvrir →</span>
+                </div>
+            </a>
+
+            <a href="tourisme.html" class="section-card">
+                <div class="section-card-top">
+                    <img src="images/Amazone.webp" alt="Tourisme au Bénin">
+                </div>
+                <div class="section-card-body">
+                    <h3>Tourisme</h3>
+                    <p>Ouidah, Ganvié, Pendjari, palais d'Abomey — les sites incontournables du Bénin.</p>
+                    <span class="voir">Découvrir →</span>
+                </div>
+            </a>
+
+            <a href="contact.html" class="section-card">
+                <div class="section-card-top">
+                    <img src="images/Amazone.webp" alt="Contact">
+                </div>
+                <div class="section-card-body">
+                    <h3>Contact</h3>
+                    <p>Une question, une suggestion ? Contactez-nous pour en savoir plus sur le Bénin.</p>
+                    <span class="voir">Nous contacter →</span>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <!-- CITATION -->
+    <div class="quote-section">
+        <blockquote>
+            Le Bénin — une fois connu, ne vous quitte plus jamais.
+        </blockquote>
+        <cite>— Le Bénin Et Ses Découvertes</cite>
+    </div>
+
+    <!-- ÉVÉNEMENTS -->
+    <section class="events-section">
+        <div class="section-header">
+            <span class="tag">À ne pas manquer</span>
+            <h2>Événements & Fêtes Traditionnelles</h2>
+            <div class="divider"></div>
+        </div>
+
+        <div class="events-grid">
+            <div class="event-card">
+                <span class="event-date">10 Janvier · Annuel</span>
+                <h3>Fête Nationale du Vodoun</h3>
+                <p>Célébrée à Ouidah chaque 10 janvier, cette fête rassemble des milliers de fidèles
+                et de touristes autour de danses, rituels et processions en l'honneur des divinités vodoun.</p>
+            </div>
+
+            <div class="event-card">
+                <span class="event-date">Juillet · Parakou</span>
+                <h3>Fête de la Gaani</h3>
+                <p>Grande fête royale du peuple Bariba de Parakou marquée par des démonstrations
+                équestres spectaculaires, des danses guerrières et des tenues royales somptueuses.</p>
+            </div>
+
+            <div class="event-card">
+                <span class="event-date">Novembre · Abomey</span>
+                <h3>Fête des Couvents</h3>
+                <p>Cérémonie traditionnelle des couvents vodoun d'Abomey, occasion rare d'assister
+                à des rituels ancestraux préservés depuis des siècles au cœur de l'ancien Dahomey.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <h3>Le Bénin Et Ses Découvertes</h3>
+                <p>Un espace dédié à la découverte d'une nation fascinante, riche de son histoire,
+                de sa culture et de sa diversité. Explorez, apprenez, émerveillez-vous.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Navigation</h4>
+                <ul>
+                    <li><a href="about.html">À Propos</a></li>
+                    <li><a href="arts.html">Arts</a></li>
+                    <li><a href="culture.html">Culture</a></li>
+                    <li><a href="gastronomie.html">Gastronomie</a></li>
+                    <li><a href="tourisme.html">Tourisme</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>À la une</h4>
+                <ul>
+                    <li><a href="#">Fête du Vodoun</a></li>
+                    <li><a href="#">Palais d'Abomey</a></li>
+                    <li><a href="#">Ganvié sur l'eau</a></li>
+                    <li><a href="#">Amazones de Dahomey</a></li>
+                    <li><a href="#">Marché Dantokpa</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 Le Bénin Et Ses Découvertes — Fait avec <span>❤</span> pour le Bénin</p>
+        </div>
+    </footer>
+
+</body>
+</html>

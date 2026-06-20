@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gastronomie du Bénin — Le Bénin Et Ses Découvertes</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Georgia', serif;
+            color: #1a1a1a;
+            background-color: #fff;
+        }
+
+        /* ===== NAVIGATION ===== */
+        .head {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%;
+            z-index: 10;
+            background: rgba(0,0,0,0.30);
+            padding: 18px 0;
+        }
+        .head ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+        }
+        .head ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-family: Arial, sans-serif;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: color 0.3s;
+        }
+        .head ul li a:hover { color: #e8c97a; }
+        .head ul li a.active {
+            color: #c0392b;
+            border-bottom: 2px solid #c0392b;
+            padding-bottom: 2px;
+        }
+
+        /* ===== HERO ===== */
+        .hero-gastro {
+            background-image: url('images/Tokpa.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            position: relative;
+            color: white;
+            text-align: center;
+        }
+        .hero-gastro::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            height: 50%;
+            background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.75));
+        }
+        .hero-text {
+            position: absolute;
+            bottom: 10%;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+            width: 80%;
+        }
+        .hero-text h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.8);
+            margin-bottom: 14px;
+            line-height: 1.2;
+        }
+        .hero-text p {
+            font-size: 1.05rem;
+            line-height: 1.8;
+            text-shadow: 1px 1px 5px rgba(0,0,0,0.9);
+            max-width: 680px;
+            margin: 0 auto;
+        }
+
+        /* ===== SECTION HEADER ===== */
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        .section-header .tag {
+            font-size: 0.75rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: #c0392b;
+            font-family: Arial, sans-serif;
+            font-weight: 700;
+        }
+        .section-header h2 {
+            font-size: 2.2rem;
+            color: #1a1a1a;
+            margin-top: 10px;
+            font-weight: 700;
+        }
+        .section-header .divider {
+            width: 60px;
+            height: 3px;
+            background: #c0392b;
+            margin: 16px auto 0;
+        }
+        .section-header.light h2 { color: #fff; }
+        .section-header.light .tag { color: #e8c97a; }
+        .section-header.light .divider { background: #e8c97a; }
+
+        /* ===== BANDE ROUGE ===== */
+        .red-band {
+            background: #c0392b;
+            padding: 26px 40px;
+            text-align: center;
+        }
+        .red-band p {
+            color: rgba(255,255,255,0.92);
+            font-size: 1rem;
+            font-style: italic;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* ===== PLATS PRINCIPAUX ===== */
+        .plats-section {
+            padding: 80px 40px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        .plats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 28px;
+            margin-top: 50px;
+        }
+        .plat-card {
+            background: #fafafa;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-top: 4px solid #c0392b;
+        }
+        .plat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 28px rgba(0,0,0,0.13);
+        }
+        .plat-card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            display: block;
+        }
+        .plat-card-body {
+            padding: 20px;
+        }
+        .plat-card-body .cat {
+            font-size: 0.7rem;
+            font-family: Arial, sans-serif;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #c0392b;
+            font-weight: 700;
+            margin-bottom: 6px;
+            display: block;
+        }
+        .plat-card-body h3 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 10px;
+        }
+        .plat-card-body p {
+            font-size: 0.87rem;
+            color: #666;
+            line-height: 1.75;
+        }
+
+        /* ===== SAUCES ===== */
+        .sauces-section {
+            background: #f7f4f0;
+            padding: 80px 40px;
+        }
+        .sauces-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            max-width: 1100px;
+            margin: 50px auto 0;
+        }
+        .sauce-card {
+            background: #fff;
+            border-radius: 8px;
+            padding: 24px 20px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+            text-align: center;
+            transition: transform 0.3s;
+            border-bottom: 3px solid #c0392b;
+        }
+        .sauce-card:hover { transform: translateY(-4px); }
+        .sauce-icon {
+            font-size: 2rem;
+            display: block;
+            margin-bottom: 12px;
+        }
+        .sauce-card h3 {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 8px;
+        }
+        .sauce-card p {
+            font-size: 0.83rem;
+            color: #777;
+            line-height: 1.6;
+        }
+
+        /* ===== STREET FOOD ===== */
+        .street-section {
+            padding: 80px 40px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        .street-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+            margin-top: 50px;
+        }
+        .street-card {
+            background: #1a1a1a;
+            border-radius: 8px;
+            overflow: hidden;
+            display: flex;
+            align-items: stretch;
+            transition: transform 0.3s;
+        }
+        .street-card:hover { transform: translateY(-4px); }
+        .street-card-accent {
+            width: 6px;
+            background: #c0392b;
+            flex-shrink: 0;
+        }
+        .street-card-body {
+            padding: 24px;
+        }
+        .street-card-body h3 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 8px;
+        }
+        .street-card-body .tag-street {
+            font-size: 0.7rem;
+            font-family: Arial, sans-serif;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #e8c97a;
+            margin-bottom: 10px;
+            display: block;
+        }
+        .street-card-body p {
+            font-size: 0.87rem;
+            color: rgba(255,255,255,0.6);
+            line-height: 1.7;
+        }
+
+        /* ===== BOISSONS ===== */
+        .boissons-section {
+            background: #1a1a1a;
+            padding: 80px 40px;
+        }
+        .boissons-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            max-width: 1100px;
+            margin: 50px auto 0;
+        }
+        .boisson-card {
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 8px;
+            padding: 30px 24px;
+            text-align: center;
+            transition: background 0.3s;
+        }
+        .boisson-card:hover { background: rgba(255,255,255,0.1); }
+        .boisson-icon {
+            font-size: 2.5rem;
+            display: block;
+            margin-bottom: 14px;
+        }
+        .boisson-card h3 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 10px;
+        }
+        .boisson-card .origine {
+            font-size: 0.7rem;
+            font-family: Arial, sans-serif;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #e8c97a;
+            margin-bottom: 12px;
+            display: block;
+        }
+        .boisson-card p {
+            font-size: 0.87rem;
+            color: rgba(255,255,255,0.55);
+            line-height: 1.7;
+        }
+
+        /* ===== FÉCULENTS ===== */
+        .feculent-section {
+            padding: 80px 40px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        .feculent-grid {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin-top: 40px;
+        }
+        .feculent-tag {
+            background: #fafafa;
+            border: 2px solid #c0392b;
+            border-radius: 50px;
+            padding: 12px 24px;
+            font-size: 0.9rem;
+            color: #1a1a1a;
+            font-weight: 700;
+            transition: all 0.3s;
+        }
+        .feculent-tag:hover {
+            background: #c0392b;
+            color: #fff;
+        }
+
+        /* ===== CITATION ===== */
+        .quote-section {
+            background: #c0392b;
+            padding: 60px 40px;
+            text-align: center;
+        }
+        .quote-section blockquote {
+            font-size: 1.5rem;
+            color: #fff;
+            font-style: italic;
+            max-width: 750px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+        .quote-section cite {
+            display: block;
+            margin-top: 16px;
+            font-size: 0.82rem;
+            color: rgba(255,255,255,0.65);
+            font-style: normal;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        /* ===== FOOTER ===== */
+        footer { background: #111; padding: 50px 40px 24px; }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 50px;
+            max-width: 1100px;
+            margin: 0 auto 40px;
+        }
+        .footer-brand h3 { color: #fff; font-size: 1.1rem; margin-bottom: 12px; }
+        .footer-brand p { color: rgba(255,255,255,0.45); font-size: 0.85rem; line-height: 1.8; }
+        .footer-links h4 {
+            color: #c0392b;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 16px;
+            font-family: Arial, sans-serif;
+        }
+        .footer-links ul { list-style: none; }
+        .footer-links ul li { margin-bottom: 10px; }
+        .footer-links ul li a {
+            color: rgba(255,255,255,0.5);
+            text-decoration: none;
+            font-size: 0.88rem;
+            transition: color 0.3s;
+        }
+        .footer-links ul li a:hover { color: #e8c97a; }
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 24px;
+            text-align: center;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        .footer-bottom p { color: rgba(255,255,255,0.3); font-size: 0.8rem; }
+        .footer-bottom span { color: #c0392b; }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .head ul { gap: 14px; flex-wrap: wrap; padding: 0 16px; }
+            .hero-text h1 { font-size: 1.9rem; }
+            .plats-grid { grid-template-columns: 1fr 1fr; }
+            .sauces-grid { grid-template-columns: 1fr 1fr; }
+            .street-grid { grid-template-columns: 1fr; }
+            .boissons-grid { grid-template-columns: 1fr; }
+            .footer-grid { grid-template-columns: 1fr; gap: 30px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HERO -->
+    <div class="hero-gastro">
+        <nav class="head">
+            <ul>
+                <li><a href="about.html">About</a></li>
+                <li><a href="arts.html">Arts</a></li>
+                <li><a href="culture.html">Culture</a></li>
+                <li><a href="gastronomie.html" class="active">Gastronomie</a></li>
+                <li><a href="index.html">Index</a></li>
+                <li><a href="tourisme.html">Tourisme</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+        <div class="hero-text">
+            <h1>Les Saveurs du Bénin</h1>
+            <p>De l'Akassa fumant au Sodabi enivrant, en passant par les marchés colorés de Cotonou —
+            la cuisine béninoise est un voyage pour les sens, un héritage transmis de mère en fille
+            depuis des générations.</p>
+        </div>
+    </div>
+
+    <!-- BANDE ROUGE -->
+    <div class="red-band">
+        <p>« La gastronomie béninoise, c'est la générosité d'un peuple mise dans une assiette —
+        des saveurs authentiques, des épices généreuses et des traditions millénaires. »</p>
+    </div>
+
+    <!-- PLATS PRINCIPAUX -->
+    <section class="plats-section">
+        <div class="section-header">
+            <span class="tag">Cuisine Traditionnelle</span>
+            <h2>Les Plats Emblématiques</h2>
+            <div class="divider"></div>
+        </div>
+
+        <div class="plats-grid">
+            <div class="plat-card">
+                <img src="D:\VISITE_BENIN\images\Akassa.jpg" alt="images/Akassa.jpg">
+                <div class="plat-card-body">
+                    <span class="cat">Plat de base</span>
+                    <h3>L'Akassa</h3>
+                    <p>Pâte de maïs fermenté enveloppée dans des feuilles de bananier, l'Akassa est
+                    l'accompagnement incontournable de la cuisine béninoise. Il se sert avec des sauces,
+                    du poisson ou de la viande.</p>
+                </div>
+            </div>
+
+            <div class="plat-card">
+                <img src="D:\VISITE_BENIN\images\Ablo.jpg" alt="images/Ablo.jpg">
+                <div class="plat-card-body">
+                    <span class="cat">Galette</span>
+                    <h3>L'Ablo</h3>
+                    <p>Galette moelleuse de maïs cuite à la vapeur, l'Ablo est très apprécié au petit
+                    déjeuner ou en accompagnement. Sa texture douce et légèrement sucrée en fait un
+                    favori de tous.</p>
+                </div>
+            </div>
+
+            <div class="plat-card">
+                <img src="D:\VISITE_BENIN\images\Dégué.jpg" alt="images/Dégué.jpg">
+                <div class="plat-card-body">
+                    <span class="cat">Bouillie</span>
+                    <h3>Le Dégué</h3>
+                    <p>Bouillie onctueuse de mil mélangée au lait caillé et sucrée, le Dégué est un
+                    dessert ou petit-déjeuner très populaire, notamment dans les régions du nord
+                    du Bénin.</p>
+                </div>
+            </div>
+
+            <div class="plat-card">
+                <img src="D:\VISITE_BENIN\images\Gbègnan.jpg" alt="images/Gbègnan.jpg">
+                <div class="plat-card-body">
+                    <span class="cat">Ragoût</span>
+                    <h3>Le Gbègnan</h3>
+                    <p>Savoureux ragoût de légumes et de viande mijotés avec des épices locales, le
+                    Gbègnan est un plat familial par excellence, servi lors des grandes occasions
+                    et réunions de famille.</p>
+                </div>
+            </div>
+
+            <div class="plat-card">
+                <img src="D:\VISITE_BENIN\images\Kpété.jpg" alt="images/Kpété.jpg">
+                <div class="plat-card-body">
+                    <span class="cat">Sauce</span>
+                    <h3>Le Kpété</h3>
+                    <p>Sauce riche et épaisse à base de graines de courge pilées, le Kpété est une
+                    spécialité du sud du Bénin. Il accompagne parfaitement l'igname pilée ou le riz
+                    blanc.</p>
+                </div>
+            </div>
+
+            <div class="plat-card">
+                <img src="D:\VISITE_BENIN\images\Tchoukoutou.jpg" alt="images/Tchoukoutou.jpg">
+                <div class="plat-card-body">
+                    <span class="cat">Spécialité du nord</span>
+                    <h3>Le Tchoukoutou</h3>
+                    <p>Bière traditionnelle brassée à partir de sorgho fermenté, le Tchoukoutou est
+                    la boisson sociale par excellence dans le nord du Bénin. Servi dans de grandes
+                    calebasses, il accompagne les fêtes et cérémonies.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SAUCES ===== -->
+    <section class="sauces-section">
+        <div class="section-header">
+            <span class="tag">Accompagnements</span>
+            <h2>Les Grandes Sauces Béninoises</h2>
+            <div class="divider"></div>
+        </div>
+
+        <div class="sauces-grid">
+            <div class="sauce-card">
+                <span class="sauce-icon">🌿</span>
+                <h3>Sauce Gluante</h3>
+                <p>À base de feuilles de corète (adémé), cette sauce onctueuse et filante est un
+                incontournable du sud du Bénin.</p>
+            </div>
+
+            <div class="sauce-card">
+                <span class="sauce-icon">🥜</span>
+                <h3>Sauce Arachide</h3>
+                <p>Riche et crémeuse, préparée à base de pâte d'arachide et d'épices, elle accompagne
+                riz, igname ou viande.</p>
+            </div>
+
+            <div class="sauce-card">
+                <span class="sauce-icon">🍅</span>
+                <h3>Sauce Tomate</h3>
+                <p>Base de nombreux plats béninois, mijotée avec des oignons, du piment et des
+                condiments locaux pour un goût unique.</p>
+            </div>
+
+            <div class="sauce-card">
+                <span class="sauce-icon">🌾</span>
+                <h3>Sauce Gombo</h3>
+                <p>Préparée à base d'okra frais, cette sauce légèrement visqueuse est très appréciée
+                avec le riz ou les tubercules.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FÉCULENTS ===== -->
+    <section class="feculent-section">
+        <div class="section-header">
+            <span class="tag">Base de l'alimentation</span>
+            <h2>Les Féculents Incontournables</h2>
+            <div class="divider"></div>
+        </div>
+        <div class="feculent-grid">
+            <span class="feculent-tag">🍠 Igname pilée</span>
+            <span class="feculent-tag">🌽 Maïs</span>
+            <span class="feculent-tag">🍚 Riz</span>
+            <span class="feculent-tag">🫘 Haricots</span>
+            <span class="feculent-tag">🌿 Manioc</span>
+            <span class="feculent-tag">🌾 Mil</span>
+            <span class="feculent-tag">🌾 Sorgho</span>
+            <span class="feculent-tag">🍌 Plantain</span>
+        </div>
+    </section>
+
+    <!-- STREET FOOD ===== -->
+    <section class="street-section">
+        <div class="section-header">
+            <span class="tag">Dans les rues</span>
+            <h2>La Street Food Béninoise</h2>
+            <div class="divider"></div>
+        </div>
+
+        <div class="street-grid">
+            <div class="street-card">
+                <div class="street-card-accent"></div>
+                <div class="street-card-body">
+                    <span class="tag-street">Beignet</span>
+                    <h3>Le Kossai</h3>
+                    <p>Beignets croustillants à base de haricots blancs frits dans de l'huile de palme.
+                    Servis chauds le matin, ils sont l'un des petit-déjeuners préférés des Béninois.</p>
+                </div>
+            </div>
+
+            <div class="street-card">
+                <div class="street-card-accent"></div>
+                <div class="street-card-body">
+                    <span class="tag-street">Beignet de maïs</span>
+                    <h3>Le Pâté</h3>
+                    <p>Beignet de maïs frit, moelleux à l'intérieur et doré à l'extérieur. Il se mange
+                    seul ou avec une sauce pimentée, à toute heure de la journée.</p>
+                </div>
+            </div>
+
+            <div class="street-card">
+                <div class="street-card-accent"></div>
+                <div class="street-card-body">
+                    <span class="tag-street">Viande grillée</span>
+                    <h3>Le Tchètchè</h3>
+                    <p>Viande de bœuf ou de poulet marinée dans des épices locales et grillée au charbon.
+                    Incontournable le soir dans les rues de Cotonou, servi avec du piment et des oignons.</p>
+                </div>
+            </div>
+
+            <div class="street-card">
+                <div class="street-card-accent"></div>
+                <div class="street-card-body">
+                    <span class="tag-street">Brochette</span>
+                    <h3>Les Brochettes</h3>
+                    <p>Morceaux de viande ou de poisson enfilés sur des brochettes et grillés à la braise.
+                    Très populaires dans les maquis et bars de rue, elles se dégustent en famille ou entre amis.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- BOISSONS ===== -->
+    <section class="boissons-section">
+        <div class="section-header light">
+            <span class="tag">À boire</span>
+            <h2>Les Boissons Traditionnelles</h2>
+            <div class="divider"></div>
+        </div>
+
+        <div class="boissons-grid">
+            <div class="boisson-card">
+                <span class="boisson-icon">🥃</span>
+                <h3>Le Sodabi</h3>
+                <span class="origine">Boisson nationale</span>
+                <p>Eau de vie distillée à partir du vin de palme fermenté, le Sodabi est la boisson
+                traditionnelle la plus emblématique du Bénin. Fort et parfumé, il accompagne les
+                cérémonies et les moments de partage.</p>
+            </div>
+
+            <div class="boisson-card">
+                <span class="boisson-icon">🫙</span>
+                <h3>Le Tchoukoutou</h3>
+                <span class="origine">Nord du Bénin</span>
+                <p>Bière artisanale brassée à partir de sorgho fermenté, servie dans de grandes
+                calebasses. Légèrement acide et rafraîchissante, elle est la boisson sociale
+                par excellence dans le septentrion béninois.</p>
+            </div>
+
+            <div class="boisson-card">
+                <span class="boisson-icon">🥤</span>
+                <h3>Le Zoom-Koom</h3>
+                <span class="origine">Boisson sucrée</span>
+                <p>Boisson fraîche et sucrée à base de mil fermenté, de gingembre et d'épices,
+                le Zoom-Koom est très apprécié des enfants et des adultes. Rafraîchissant et
+                énergisant, il se consomme à tout moment de la journée.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CITATION -->
+    <div class="quote-section">
+        <blockquote>
+            Manger béninois, c'est goûter à l'âme d'un peuple généreux et fier.
+        </blockquote>
+        <cite>— Le Bénin Et Ses Découvertes</cite>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <h3>Le Bénin Et Ses Découvertes</h3>
+                <p>Un espace dédié à la découverte d'une nation fascinante, riche de son histoire,
+                de sa culture et de sa diversité. Explorez, apprenez, émerveillez-vous.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Navigation</h4>
+                <ul>
+                    <li><a href="about.html">À Propos</a></li>
+                    <li><a href="arts.html">Arts</a></li>
+                    <li><a href="culture.html">Culture</a></li>
+                    <li><a href="gastronomie.html">Gastronomie</a></li>
+                    <li><a href="tourisme.html">Tourisme</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Gastronomie</h4>
+                <ul>
+                    <li><a href="#">Plats traditionnels</a></li>
+                    <li><a href="#">Sauces béninoises</a></li>
+                    <li><a href="#">Street food</a></li>
+                    <li><a href="#">Boissons locales</a></li>
+                    <li><a href="#">Marchés de Cotonou</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 Le Bénin Et Ses Découvertes — Fait avec <span>❤</span> pour le Bénin</p>
+        </div>
+    </footer>
+
+</body>
+</html>
