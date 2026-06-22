@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tourisme au Bénin — Le Bénin Et Ses Découvertes</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Georgia', serif;
+            color: #1a1a1a;
+            background-color: #fff;
+        }
+
+        /* ===== NAVIGATION ===== */
+        .head {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%;
+            z-index: 10;
+            background: rgba(0,0,0,0.30);
+            padding: 18px 0;
+        }
+        .head ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+        }
+        .head ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-family: Arial, sans-serif;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: color 0.3s;
+        }
+        .head ul li a:hover { color: #e8c97a; }
+        .head ul li a.active {
+            color: #c0392b;
+            border-bottom: 2px solid #c0392b;
+            padding-bottom: 2px;
+        }
+
+        /* ===== HERO ===== */
+        .hero-tourisme {
+            background-image: url('images/Parc.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            position: relative;
+            color: white;
+            text-align: center;
+        }
+        .hero-tourisme::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            height: 55%;
+            background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.80));
+        }
+        .hero-text {
+            position: absolute;
+            bottom: 10%;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+            width: 80%;
+        }
+        .hero-text h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.8);
+            margin-bottom: 14px;
+            line-height: 1.2;
+        }
+        .hero-text p {
+            font-size: 1.05rem;
+            line-height: 1.8;
+            text-shadow: 1px 1px 5px rgba(0,0,0,0.9);
+            max-width: 680px;
+            margin: 0 auto;
+        }
+
+        /* ===== SECTION HEADER ===== */
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        .section-header .tag {
+            font-size: 0.75rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: #c0392b;
+            font-family: Arial, sans-serif;
+            font-weight: 700;
+        }
+        .section-header h2 {
+            font-size: 2.2rem;
+            color: #1a1a1a;
+            margin-top: 10px;
+            font-weight: 700;
+        }
+        .section-header .divider {
+            width: 60px;
+            height: 3px;
+            background: #c0392b;
+            margin: 16px auto 0;
+        }
+        .section-header.light h2 { color: #fff; }
+        .section-header.light .tag { color: #e8c97a; }
+        .section-header.light .divider { background: #e8c97a; }
+
+        /* ===== BANDE ROUGE ===== */
+        .red-band {
+            background: #c0392b;
+            padding: 26px 40px;
+            text-align: center;
+        }
+        .red-band p {
+            color: rgba(255,255,255,0.92);
+            font-size: 1rem;
+            font-style: italic;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* ===== SITE VEDETTE (Ganvié) ===== */
+        .vedette-section {
+            padding: 80px 40px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        .vedette-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+        .vedette-img img {
+            width: 100%;
+            height: 440px;
+            object-fit: cover;
+            border-radius: 4px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+        }
+        .vedette-text .art-tag {
+            display: inline-block;
+            background: #c0392b;
+            color: #fff;
+            font-size: 0.72rem;
+            font-family: Arial, sans-serif;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            padding: 5px 14px;
+            border-radius: 2px;
+            margin-bottom: 16px;
+        }
+        .vedette-text h3 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 18px;
+            line-height: 1.3;
+        }
+        .vedette-text h3 span { color: #c0392b; }
+        .vedette-text p {
+            font-size: 0.97rem;
+            color: #555;
+            line-height: 1.9;
+            margin-bottom: 14px;
+        }
+
+        /* ===== SITES HISTORIQUES ===== */
+        .historiques-section {
+            background: #f7f4f0;
+            padding: 80px 40px;
+        }
+        .historiques-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            max-width: 1100px;
+            margin: 50px auto 0;
+        }
+        .site-card {
+            background: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .site-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 28px rgba(0,0,0,0.13);
+        }
+        .site-card img {
+            width: 100%;
+            height: 190px;
+            object-fit: cover;
+            display: block;
+        }
+        .site-card-body {
+            padding: 22px;
+            border-top: 3px solid #c0392b;
+        }
+        .site-card-body .cat {
+            font-size: 0.7rem;
+            font-family: Arial, sans-serif;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #c0392b;
+            font-weight: 700;
+            margin-bottom: 6px;
+            display: block;
+        }
+        .site-card-body h3 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 10px;
+        }
+        .site-card-body p {
+            font-size: 0.87rem;
+            color: #666;
+            line-height: 1.75;
+        }
+
+        /* ===== SITES NATURELS ===== */
+        .naturels-section {
+            padding: 80px 40px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        .naturels-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 28px;
+            margin-top: 50px;
+        }
+        .nature-card {
+            border-radius: 8px;
+            overflow: hidden;
+            position: relative;
+            height: 280px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+            transition: transform 0.3s;
+        }
+        .nature-card:hover { transform: translateY(-4px); }
+        .nature-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .nature-card::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.75), transparent);
+        }
+        .nature-card-body {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 24px;
+            z-index: 2;
+        }
+        .nature-card-body .cat {
+            font-size: 0.7rem;
+            font-family: Arial, sans-serif;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #e8c97a;
+            font-weight: 700;
+            margin-bottom: 6px;
+            display: block;
+        }
+        .nature-card-body h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 6px;
+        }
+        .nature-card-body p {
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.8);
+            line-height: 1.6;
+        }
+
+        /* ===== VILLES ===== */
+        .villes-section {
+            background: #1a1a1a;
+            padding: 80px 40px;
+        }
+        .villes-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            max-width: 1100px;
+            margin: 50px auto 0;
+        }
+        .ville-card {
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 8px;
+            padding: 28px 20px;
+            text-align: center;
+            transition: background 0.3s;
+        }
+        .ville-card:hover { background: rgba(255,255,255,0.1); }
+        .ville-icon {
+            font-size: 2.2rem;
+            display: block;
+            margin-bottom: 12px;
+        }
+        .ville-card h3 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 8px;
+        }
+        .ville-card .type {
+            font-size: 0.7rem;
+            font-family: Arial, sans-serif;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #e8c97a;
+            margin-bottom: 12px;
+            display: block;
+        }
+        .ville-card p {
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.55);
+            line-height: 1.7;
+        }
+
+        /* ===== CONSEILS VOYAGE ===== */
+        .conseils-section {
+            padding: 80px 40px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        .conseils-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-top: 50px;
+        }
+        .conseil-card {
+            background: #fafafa;
+            border-radius: 8px;
+            padding: 28px 24px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+            border-left: 4px solid #c0392b;
+        }
+        .conseil-icon {
+            font-size: 1.8rem;
+            display: block;
+            margin-bottom: 12px;
+        }
+        .conseil-card h3 {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 10px;
+        }
+        .conseil-card p {
+            font-size: 0.87rem;
+            color: #666;
+            line-height: 1.75;
+        }
+
+        /* ===== CITATION ===== */
+        .quote-section {
+            background: #c0392b;
+            padding: 60px 40px;
+            text-align: center;
+        }
+        .quote-section blockquote {
+            font-size: 1.5rem;
+            color: #fff;
+            font-style: italic;
+            max-width: 750px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+        .quote-section cite {
+            display: block;
+            margin-top: 16px;
+            font-size: 0.82rem;
+            color: rgba(255,255,255,0.65);
+            font-style: normal;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        /* ===== FOOTER ===== */
+        footer { background: #111; padding: 50px 40px 24px; }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 50px;
+            max-width: 1100px;
+            margin: 0 auto 40px;
+        }
+        .footer-brand h3 { color: #fff; font-size: 1.1rem; margin-bottom: 12px; }
+        .footer-brand p { color: rgba(255,255,255,0.45); font-size: 0.85rem; line-height: 1.8; }
+        .footer-links h4 {
+            color: #c0392b;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 16px;
+            font-family: Arial, sans-serif;
+        }
+        .footer-links ul { list-style: none; }
+        .footer-links ul li { margin-bottom: 10px; }
+        .footer-links ul li a {
+            color: rgba(255,255,255,0.5);
+            text-decoration: none;
+            font-size: 0.88rem;
+            transition: color 0.3s;
+        }
+        .footer-links ul li a:hover { color: #e8c97a; }
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 24px;
+            text-align: center;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        .footer-bottom p { color: rgba(255,255,255,0.3); font-size: 0.8rem; }
+        .footer-bottom span { color: #c0392b; }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .head ul { gap: 14px; flex-wrap: wrap; padding: 0 16px; }
+            .hero-text h1 { font-size: 1.9rem; }
+            .vedette-content { grid-template-columns: 1fr; gap: 30px; }
+            .historiques-grid { grid-template-columns: 1fr 1fr; }
+            .naturels-grid { grid-template-columns: 1fr; }
+            .villes-grid { grid-template-columns: 1fr 1fr; }
+            .conseils-grid { grid-template-columns: 1fr; }
+            .footer-grid { grid-template-columns: 1fr; gap: 30px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HERO -->
+    <div class="hero-tourisme">
+        <nav class="head">
+            <ul>
+                <li><a href="about.html">About</a></li>
+                <li><a href="arts.html">Arts</a></li>
+                <li><a href="culture.html">Culture</a></li>
+                <li><a href="gastronomie.html">Gastronomie</a></li>
+                <li><a href="index.html">Index</a></li>
+                <li><a href="tourisme.html" class="active">Tourisme</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+        <div class="hero-text">
+            <h1>Explorez le Bénin</h1>
+            <p>Des palais royaux classés UNESCO aux savanes sauvages du nord, en passant par
+            le village lacustre de Ganvié ; le Bénin est une destination qui émerveille,
+            surprend et marque pour toujours.</p>
+        </div>
+    </div>
+
+    <!-- BANDE ROUGE -->
+    <div class="red-band">
+        <p>« Le Bénin est l'une des destinations les plus authentiques d'Afrique de l'Ouest _
+        un pays où l'histoire, la nature et la spiritualité se rencontrent à chaque pas. »</p>
+    </div>
+
+    <!-- SITE VEDETTE — GANVIÉ -->
+    <section class="vedette-section">
+        <div class="vedette-content">
+            <div class="vedette-img">
+                <img src="images/Ganvié.jpg" alt="D:\VISITE_BENIN\images\Ganvié.jpg">
+            </div>
+            <div class="vedette-text">
+                <span class="art-tag">Site incontournable</span>
+                <h3>Ganvié — La <span>Venise de l'Afrique</span></h3>
+                <p>Fondé au XVIIe siècle par le peuple Tofinu pour échapper aux razzias des guerriers
+                Fon, Ganvié est un village entièrement construit sur pilotis au milieu du lac Nokoué,
+                à quelques kilomètres de Cotonou.</p>
+                <p>Avec plus de 30 000 habitants vivant sur l'eau, Ganvié est le plus grand village
+                lacustre d'Afrique. Ses habitants se déplacent uniquement en pirogue, pêchent,
+                font leurs courses et mènent leur vie entière sur l'eau.</p>
+                <p>Une visite en pirogue au lever du soleil est une expérience inoubliable, classée
+                parmi les sites touristiques les plus remarquables d'Afrique de l'Ouest.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SITES HISTORIQUES -->
+    <section class="historiques-section">
+        <div class="section-header">
+            <span class="tag">Patrimoine</span>
+            <h2>Sites Historiques Incontournables</h2>
+            <div class="divider"></div>
+        </div>
+
+        <div class="historiques-grid">
+            <div class="site-card">
+                <img src="images/Abomey-.jpg" alt="D:\VISITE_BENIN\images\Abomey-.jpg">
+                <div class="site-card-body">
+                    <span class="cat">UNESCO</span>
+                    <h3>Palais Royaux d'Abomey</h3>
+                    <p>Classés au patrimoine mondial de l'UNESCO, les palais royaux d'Abomey sont
+                    le témoignage le plus éloquent de la grandeur du Royaume de Dahomey. Bas-reliefs,
+                    trônes royaux et musée historique y cohabitent.</p>
+                </div>
+            </div>
+
+            <div class="site-card">
+                <img src="images/Ouidah.jpg" alt="D:\VISITE_BENIN\images\Ouidah.jpg">
+                <div class="site-card-body">
+                    <span class="cat">Histoire</span>
+                    <h3>Route de l'Esclave _ Ouidah</h3>
+                    <p>Ce chemin historique de 4 km relie l'ancienne place des enchères à la "Porte
+                    du Non-Retour" sur la plage. Un lieu de mémoire poignant dédié aux millions
+                    d'Africains victimes de la traite négrière.</p>
+                </div>
+            </div>
+
+            <div class="site-card">
+                <img src="images/Python - Copie.jpg" alt="D:\VISITE_BENIN\images\Python - Copie.jpg">
+                <div class="site-card-body">
+                    <span class="cat">Spiritualité</span>
+                    <h3>Temple des Pythons _ Ouidah</h3>
+                    <p>Ce temple sacré abrite des dizaines de pythons royaux vénérés comme
+                    incarnations de la divinité Dan. Les visiteurs peuvent les tenir dans leurs
+                    mains — une expérience unique et inoubliable.</p>
+                </div>
+            </div>
+
+            <div class="site-card">
+                <img src="images/Porto-novo - Copie.jpeg" alt="D:\VISITE_BENIN\images\Porto-novo - Copie.jpeg">
+                <div class="site-card-body">
+                    <span class="cat">Capitale</span>
+                    <h3>Porto-Novo _ Ville Royale</h3>
+                    <p>Capitale constitutionnelle du Bénin, Porto-Novo mêle architecture coloniale
+                    portugaise et tradition Goun. Le Musée Ethnographique et la Grande Mosquée
+                    comptent parmi ses joyaux.</p>
+                </div>
+            </div>
+
+            <div class="site-card">
+                <img src="images/tata.jpg" alt="D:\VISITE_BENIN\images\tata.jpg">
+                <div class="site-card-body">
+                    <span class="cat">Architecture</span>
+                    <h3>Tata Somba _ Maisons Fortifiées</h3>
+                    <p>Dans le nord du Bénin, les Tata Somba sont des maisons fortifiées à deux
+                    étages construites par le peuple Betammaribé. Classées à l'UNESCO, elles
+                    ressemblent à de petits châteaux de terre.</p>
+                </div>
+            </div>
+
+            <div class="site-card">
+                <img src="images/Sylva.jpg" alt="D:\VISITE_BENIN\images\Sylva.jpg">
+                <div class="site-card-body">
+                    <span class="cat">Musée</span>
+                    <h3>Musée da Silva _ Porto-Novo</h3>
+                    <p>Installé dans l'ancienne demeure d'un négociant brésilien, ce musée retrace
+                    les liens historiques entre le Bénin et le Brésil, et présente une collection
+                    remarquable d'objets afro-brésiliens.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SITES NATURELS -->
+    <section class="naturels-section">
+        <div class="section-header">
+            <span class="tag">Nature</span>
+            <h2>Sites Naturels & Paysages</h2>
+            <div class="divider"></div>
+        </div>
+
+        <div class="naturels-grid">
+            <div class="nature-card">
+                <img src="images/Parc_W.jpg" alt="D:\VISITE_BENIN\images\Parc_W.jpg">
+                <div class="nature-card-body">
+                    <span class="cat">Parc National</span>
+                    <h3>Parc National de la Pendjari</h3>
+                    <p>L'un des derniers grands sanctuaires de faune sauvage d'Afrique de l'Ouest.
+                    Éléphants, lions, hippos, buffles _ une expérience safari authentique.</p>
+                </div>
+            </div>
+
+            <div class="nature-card">
+                <img src="images/Ganvié.jpg" alt="D:\VISITE_BENIN\images\Ganvié.jpg">
+                <div class="nature-card-body">
+                    <span class="cat">Réserve UNESCO</span>
+                    <h3>Parc du W</h3>
+                    <p>Classé au patrimoine mondial, ce parc transfrontalier partagé avec le Niger
+                    et le Burkina Faso abrite une biodiversité exceptionnelle.</p>
+                </div>
+            </div>
+
+            <div class="nature-card">
+                <img src="images/bouches.jpg" alt="D:\VISITE_BENIN\images\bouches.jpg">
+                <div class="nature-card-body">
+                    <span class="cat">Site côtier</span>
+                    <h3>Bouches du Roy</h3>
+                    <p>Fascinant point de rencontre entre la lagune côtière et l'océan Atlantique,
+                    offrant des paysages aquatiques d'une beauté saisissante.</p>
+                </div>
+            </div>
+
+            <div class="nature-card">
+                <img src="images/Kpassè.jpg" alt="D:\VISITE_BENIN\images\Kpassè.jpg">
+                <div class="nature-card-body">
+                    <span class="cat">Forêt Sacrée</span>
+                    <h3>Forêt Sacrée de Kpassé _ Ouidah</h3>
+                    <p>Classée à l'UNESCO, cette forêt millénaire abrite des arbres séculaires
+                    et des statues vodoun. Un lieu de recueillement et de spiritualité profonde.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- VILLES À VISITER -->
+    <section class="villes-section">
+        <div class="section-header light">
+            <span class="tag">Destinations</span>
+            <h2>Villes à Visiter</h2>
+            <div class="divider"></div>
+        </div>
+
+        <div class="villes-grid">
+            <div class="ville-card">
+                <span class="ville-icon">🕌</span>
+                <h3>Ouidah</h3>
+                <span class="type">Capitale spirituelle</span>
+                <p>Berceau du Vodoun, ville de la Route de l'Esclave et du Temple des Pythons.</p>
+            </div>
+
+            <div class="ville-card">
+                <span class="ville-icon">🏛️</span>
+                <h3>Abomey</h3>
+                <span class="type">Capitale historique</span>
+                <p>Ancienne capitale du Royaume de Dahomey, ses palais sont classés à l'UNESCO.</p>
+            </div>
+
+            <div class="ville-card">
+                <span class="ville-icon">🌆</span>
+                <h3>Porto-Novo</h3>
+                <span class="type">Capitale coloniale</span>
+                <p>Architecture coloniale, musées remarquables et héritage Goun préservé.</p>
+            </div>
+
+            <div class="ville-card">
+                <span class="ville-icon">🌄</span>
+                <h3>Natitingou</h3>
+                <span class="type">Porte du nord</span>
+                <p>Ville de montagne, porte d'entrée vers la Pendjari et les Tata Somba.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONSEILS PRATIQUES -->
+    <section class="conseils-section">
+        <div class="section-header">
+            <span class="tag">Pratique</span>
+            <h2>Conseils pour Voyager au Bénin</h2>
+            <div class="divider"></div>
+        </div>
+
+        <div class="conseils-grid">
+            <div class="conseil-card">
+                <span class="conseil-icon">🌤️</span>
+                <h3>Meilleure période</h3>
+                <p>La meilleure période pour visiter le Bénin est de novembre à avril, saison sèche.
+                Évitez la saison des pluies (mai à octobre) pour les déplacements dans le nord.</p>
+            </div>
+
+            <div class="conseil-card">
+                <span class="conseil-icon">💉</span>
+                <h3>Santé & Sécurité</h3>
+                <p>Le vaccin contre la fièvre jaune est obligatoire. Prévoyez aussi un traitement
+                antipaludéen. L'eau en bouteille est recommandée dans tout le pays.</p>
+            </div>
+
+            <div class="conseil-card">
+                <span class="conseil-icon">💰</span>
+                <h3>Monnaie & Budget</h3>
+                <p>La monnaie est le Franc CFA (XOF). Le Bénin est une destination abordable.
+                Prévoyez du cash car les distributeurs sont rares en dehors de Cotonou.</p>
+            </div>
+
+            <div class="conseil-card">
+                <span class="conseil-icon">🚗</span>
+                <h3>Transport</h3>
+                <p>Les zemidjan (motos-taxis) sont le moyen de transport le plus courant. Pour
+                les longues distances, des bus relient les grandes villes entre elles.</p>
+            </div>
+
+            <div class="conseil-card">
+                <span class="conseil-icon">🗣️</span>
+                <h3>Langue</h3>
+                <p>Le français est la langue officielle. Le Fon, le Yoruba et le Bariba sont
+                parlés dans leurs régions respectives. Quelques mots en Fon seront très appréciés.</p>
+            </div>
+
+            <div class="conseil-card">
+                <span class="conseil-icon">📸</span>
+                <h3>Photographie</h3>
+                <p>Demandez toujours la permission avant de photographier des personnes ou des
+                cérémonies. Certains sites sacrés interdisent les photos _ respectez ces règles.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CITATION -->
+    <div class="quote-section">
+        <blockquote>
+            Voyager au Bénin, c'est toucher l'âme de l'Afrique.
+        </blockquote>
+        <cite> Le Bénin Et Ses Découvertes</cite>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <h3>Le Bénin Et Ses Découvertes</h3>
+                <p>Un espace dédié à la découverte d'une nation fascinante, riche de son histoire,
+                de sa culture et de sa diversité. Explorez, apprenez, émerveillez-vous.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Navigation</h4>
+                <ul>
+                    <li><a href="about.html">À Propos</a></li>
+                    <li><a href="arts.html">Arts</a></li>
+                    <li><a href="culture.html">Culture</a></li>
+                    <li><a href="gastronomie.html">Gastronomie</a></li>
+                    <li><a href="tourisme.html">Tourisme</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Tourisme</h4>
+                <ul>
+                    <li><a href="#">Ganvié</a></li>
+                    <li><a href="#">Palais d'Abomey</a></li>
+                    <li><a href="#">Route de l'Esclave</a></li>
+                    <li><a href="#">Parc de la Pendjari</a></li>
+                    <li><a href="#">Tata Somba</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 Le Bénin Et Ses Découvertes _ Fait avec <span>❤</span> pour le Bénin</p>
+            <p>Réalisé par Idayath Adoukè OLAOGOU</p>
+        </div>
+    </footer>
+
+</body>
+</html>

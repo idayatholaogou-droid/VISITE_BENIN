@@ -2,79 +2,586 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Contact - Le Bénin Et Ses Découvertes</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact — Le Bénin Et Ses Découvertes</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Georgia', serif;
+            color: #1a1a1a;
+            background-color: #fff;
+        }
+
+        /* ===== NAVIGATION ===== */
+        .head {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%;
+            z-index: 10;
+            background: rgba(0,0,0,0.30);
+            padding: 18px 0;
+        }
+        .head ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+        }
+        .head ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-family: Arial, sans-serif;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: color 0.3s;
+        }
+        .head ul li a:hover { color: #e8c97a; }
+        .head ul li a.active {
+            color: #c0392b;
+            border-bottom: 2px solid #c0392b;
+            padding-bottom: 2px;
+        }
+
+        /* ===== HERO ===== */
+        .hero-contact {
+            background-image: url('images/Amazone.webp');
+            background-size: cover;
+            background-position: center top;
+            height: 60vh;
+            position: relative;
+            color: white;
+            text-align: center;
+        }
+        .hero-contact::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(0,0,0,0.55);
+        }
+        .hero-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 2;
+            width: 80%;
+        }
+        .hero-text h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.8);
+            margin-bottom: 14px;
+            line-height: 1.2;
+        }
+        .hero-text p {
+            font-size: 1.05rem;
+            line-height: 1.8;
+            text-shadow: 1px 1px 5px rgba(0,0,0,0.9);
+            max-width: 580px;
+            margin: 0 auto;
+        }
+
+        /* ===== SECTION HEADER ===== */
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        .section-header .tag {
+            font-size: 0.75rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: #c0392b;
+            font-family: Arial, sans-serif;
+            font-weight: 700;
+        }
+        .section-header h2 {
+            font-size: 2.2rem;
+            color: #1a1a1a;
+            margin-top: 10px;
+            font-weight: 700;
+        }
+        .section-header .divider {
+            width: 60px;
+            height: 3px;
+            background: #c0392b;
+            margin: 16px auto 0;
+        }
+
+        /* ===== CONTACT SECTION ===== */
+        .contact-section {
+            padding: 80px 40px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.6fr;
+            gap: 60px;
+            align-items: start;
+        }
+
+        /* ===== INFOS CONTACT ===== */
+        .contact-infos h3 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 16px;
+        }
+        .contact-infos p {
+            font-size: 0.93rem;
+            color: #666;
+            line-height: 1.8;
+            margin-bottom: 30px;
+        }
+        .info-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+        .info-icon {
+            width: 44px;
+            height: 44px;
+            background: #c0392b;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            flex-shrink: 0;
+        }
+        .info-text h4 {
+            font-size: 0.8rem;
+            font-family: Arial, sans-serif;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: #c0392b;
+            margin-bottom: 4px;
+        }
+        .info-text p {
+            font-size: 0.9rem;
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 0;
+        }
+
+        /* ===== RÉSEAUX SOCIAUX ===== */
+        .reseaux {
+            margin-top: 36px;
+        }
+        .reseaux h4 {
+            font-size: 0.8rem;
+            font-family: Arial, sans-serif;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: #1a1a1a;
+            margin-bottom: 14px;
+        }
+        .reseaux-icons {
+            display: flex;
+            gap: 12px;
+        }
+        .reseau-btn {
+            width: 40px;
+            height: 40px;
+            background: #fafafa;
+            border: 1px solid #e0e0e0;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            text-decoration: none;
+            transition: background 0.3s, border-color 0.3s;
+        }
+        .reseau-btn:hover {
+            background: #c0392b;
+            border-color: #c0392b;
+        }
+
+        /* ===== FORMULAIRE ===== */
+        .contact-form {
+            background: #fafafa;
+            border-radius: 8px;
+            padding: 40px;
+            box-shadow: 0 2px 16px rgba(0,0,0,0.07);
+        }
+        .contact-form h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 24px;
+        }
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+        .form-group {
+            margin-bottom: 16px;
+        }
+        .form-group label {
+            display: block;
+            font-size: 0.78rem;
+            font-family: Arial, sans-serif;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: #555;
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 0.93rem;
+            font-family: 'Georgia', serif;
+            color: #1a1a1a;
+            background: #fff;
+            transition: border-color 0.3s;
+            outline: none;
+        }
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: #c0392b;
+        }
+        .form-group textarea {
+            resize: vertical;
+            min-height: 130px;
+        }
+        .form-submit {
+            width: 100%;
+            background: #c0392b;
+            color: #fff;
+            border: none;
+            padding: 14px;
+            font-family: Arial, sans-serif;
+            font-size: 0.82rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.3s;
+            margin-top: 8px;
+        }
+        .form-submit:hover { background: #a93226; }
+
+        /* ===== FAQ ===== */
+        .faq-section {
+            background: #f7f4f0;
+            padding: 80px 40px;
+        }
+        .faq-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            max-width: 1100px;
+            margin: 50px auto 0;
+        }
+        .faq-card {
+            background: #fff;
+            border-radius: 8px;
+            padding: 28px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+            border-left: 4px solid #c0392b;
+        }
+        .faq-card h4 {
+            font-size: 0.97rem;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 10px;
+        }
+        .faq-card p {
+            font-size: 0.88rem;
+            color: #666;
+            line-height: 1.75;
+        }
+
+        /* ===== CITATION ===== */
+        .quote-section {
+            background: #c0392b;
+            padding: 60px 40px;
+            text-align: center;
+        }
+        .quote-section blockquote {
+            font-size: 1.5rem;
+            color: #fff;
+            font-style: italic;
+            max-width: 750px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+        .quote-section cite {
+            display: block;
+            margin-top: 16px;
+            font-size: 0.82rem;
+            color: rgba(255,255,255,0.65);
+            font-style: normal;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        /* ===== FOOTER ===== */
+        footer { background: #111; padding: 50px 40px 24px; }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 50px;
+            max-width: 1100px;
+            margin: 0 auto 40px;
+        }
+        .footer-brand h3 { color: #fff; font-size: 1.1rem; margin-bottom: 12px; }
+        .footer-brand p { color: rgba(255,255,255,0.45); font-size: 0.85rem; line-height: 1.8; }
+        .footer-links h4 {
+            color: #c0392b;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 16px;
+            font-family: Arial, sans-serif;
+        }
+        .footer-links ul { list-style: none; }
+        .footer-links ul li { margin-bottom: 10px; }
+        .footer-links ul li a {
+            color: rgba(255,255,255,0.5);
+            text-decoration: none;
+            font-size: 0.88rem;
+            transition: color 0.3s;
+        }
+        .footer-links ul li a:hover { color: #e8c97a; }
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 24px;
+            text-align: center;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        .footer-bottom p { color: rgba(255,255,255,0.3); font-size: 0.8rem; }
+        .footer-bottom span { color: #c0392b; }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .head ul { gap: 14px; flex-wrap: wrap; padding: 0 16px; }
+            .hero-text h1 { font-size: 2rem; }
+            .contact-grid { grid-template-columns: 1fr; gap: 40px; }
+            .form-row { grid-template-columns: 1fr; }
+            .faq-grid { grid-template-columns: 1fr; }
+            .footer-grid { grid-template-columns: 1fr; gap: 30px; }
+        }
+    </style>
 </head>
 <body>
-    <nav>
+
+    <!-- HERO -->
+    <div class="hero-contact">
+        <nav class="head">
             <ul>
-                <li><a href="about.html">about</a></li>
-                <li><a href="arts.html">arts</a></li> 
-                <li><a href="culture.html">culture</a></li>
-                <li><a href="gastronomie.html">gastronomie</a></li>
-                <li><a href="index.html">index</a></li> 
-                <li><a href="tourisme.html">tourisme</a></li>
-                <li><a href="contact.html">contact</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="arts.html">Arts</a></li>
+                <li><a href="culture.html">Culture</a></li>
+                <li><a href="gastronomie.html">Gastronomie</a></li>
+                <li><a href="index.html">Index</a></li>
+                <li><a href="tourisme.html">Tourisme</a></li>
+                <li><a href="contact.html" class="active">Contact</a></li>
             </ul>
-          </nav>
-
-    <div class="contact-hero">
-
-        <h1 class="contact-titre">Contactez-Nous</h1>
-        <p class="contact-sous-titre">Une question ? Une suggestion ? Écrivez-nous !</p>
-
-    
-        <div class="contact-form">
-
-            <div class="form-group">
-                <label>Nom complet</label>
-                <input type="text" placeholder="Votre nom complet">
-            </div>
-
-            <div class="form-group">
-                <label>Adresse email</label>
-                <input type="email" placeholder="Votre email">
-            </div>
-
-            <div class="form-group">
-                <label>Numéro de téléphone</label>
-                <input type="tel" placeholder="Votre numéro">
-            </div>
-
-            <div class="form-group">
-                <label>Sujet</label>
-                <input type="text" placeholder="Sujet de votre message">
-            </div>
-
-            <div class="form-group">
-                <label>Message</label>
-                <textarea rows="5" placeholder="Écrivez votre message ici..."></textarea>
-            </div>
-
-            <button class="btn-envoyer">Envoyer le message</button>
-
+        </nav>
+        <div class="hero-text">
+            <h1>Contactez-Nous</h1>
+            <p>Une question, une suggestion ou une envie de partager votre amour du Bénin ?
+            Nous serions ravis de vous entendre.</p>
         </div>
-
-    
-        <div class="contact-infos">
-            <div class="info-item">
-                <span>📧</span>
-                <p>idayatholaogou@gmail.com</p>
-            </div>
-            <div class="info-item">
-                <span>📞</span>
-                <p>+229 0146898851/0147932283</p>
-            </div>
-            <div>
-                <span></span>
-            </div>
-            <div class="info-item">
-                <span>📍</span>
-                <p>Porto-Novo, Cotonou, Bénin</p>
-            </div>
-        </div>
-
     </div>
+
+    <!-- FORMULAIRE & INFOS -->
+    <section class="contact-section">
+        <div class="section-header">
+            <span class="tag">Écrivez-nous</span>
+            <h2>Restons en Contact</h2>
+            <div class="divider"></div>
+        </div>
+
+        <div class="contact-grid">
+
+            <!-- INFOS -->
+            <div class="contact-infos">
+                <h3>Nous sommes à votre écoute</h3>
+                <p>Que vous ayez une question sur le Bénin, une suggestion pour améliorer le site,
+                ou simplement l'envie de partager votre expérience de ce beau pays, écrivez-nous !</p>
+
+                <div class="info-item">
+                    <div class="info-icon">📍</div>
+                    <div class="info-text">
+                        <h4>Localisation</h4>
+                        <p>Porto-Novo, Bénin<br>Afrique de l'Ouest</p>
+                    </div>
+                </div>
+
+                <div class="info-item">
+                    <div class="info-icon">✉️</div>
+                    <div class="info-text">
+                        <h4>Email</h4>
+                        <p>idayatholaogou@gmail.com</p>
+                    </div>
+                </div>
+
+                <div class="info-item">
+                    <div class="info-icon">🌍</div>
+                    <div class="info-text">
+                        <h4>Site web</h4>
+                        <p>www.benindecouverte.com</p>
+                    </div>
+                </div>
+
+               <div class="reseaux">
+    <h4>Suivez-nous</h4>
+    <div class="reseaux-icons">
+        <a href="https://wa.me/2290147932283" class="reseau-btn" target="_blank" title="WhatsApp">
+            📱
+        </a>
+        <a href="https://www.linkedin.com/in/IdayathOlaogou" class="reseau-btn" target="_blank" title="LinkedIn">
+            💼
+        </a>
+        <a href="+2290146898851"  class="reseau-btn" target="_blank" title="Numéro de Téléphone">
+             📞
+        </a>
+    </div>
+</div>
+            </div>
+
+            <!-- FORMULAIRE -->
+            <div class="contact-form">
+                <h3>Envoyez-nous un message</h3>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="prenom">Prénom</label>
+                        <input type="text" id="prenom" placeholder="Votre prénom">
+                    </div>
+                    <div class="form-group">
+                        <label for="nom">Nom</label>
+                        <input type="text" id="nom" placeholder="Votre nom">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" placeholder="votre@email.com">
+                </div>
+
+                <div class="form-group">
+                    <label for="sujet">Sujet</label>
+                    <select id="sujet">
+                        <option value="">Choisissez un sujet</option>
+                        <option value="question">Question sur le Bénin</option>
+                        <option value="suggestion">Suggestion pour le site</option>
+                        <option value="tourisme">Informations touristiques</option>
+                        <option value="partenariat">Partenariat</option>
+                        <option value="autre">Autre</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" placeholder="Écrivez votre message ici..."></textarea>
+                </div>
+
+                <button class="form-submit">Envoyer le message</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq-section">
+        <div class="section-header">
+            <span class="tag">Questions fréquentes</span>
+            <h2>FAQ</h2>
+            <div class="divider"></div>
+        </div>
+
+        <div class="faq-grid">
+            <div class="faq-card">
+                <h4>Le Bénin est-il une destination sûre pour les touristes ?</h4>
+                <p>Le Bénin est généralement considéré comme l'une des destinations les plus stables
+                d'Afrique de l'Ouest. Les zones touristiques comme Cotonou, Ouidah et Abomey sont
+                sûres. Évitez les zones frontalières nord en raison de tensions régionales.</p>
+            </div>
+
+            <div class="faq-card">
+                <h4>Faut-il un visa pour visiter le Bénin ?</h4>
+                <p>La plupart des nationalités nécessitent un visa. Il est possible d'obtenir un
+                visa à l'arrivée à l'aéroport de Cotonou. Renseignez-vous auprès de l'ambassade
+                du Bénin de votre pays avant de voyager.</p>
+            </div>
+
+            <div class="faq-card">
+                <h4>Quelle est la meilleure période pour visiter le Bénin ?</h4>
+                <p>La saison sèche de novembre à avril est idéale. Le 10 janvier est parfait
+                pour assister à la Fête du Vodoun à Ouidah; l'un des événements culturels
+                les plus impressionnants d'Afrique de l'Ouest.</p>
+            </div>
+
+            <div class="faq-card">
+                <h4>Peut-on photographier les cérémonies vodoun ?</h4>
+                <p>Certaines cérémonies autorisent les photos, d'autres non. Demandez toujours
+                la permission avant de photographier. Respectez les interdictions dans les
+                sites sacrés. c'est une marque de respect envers la culture locale.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CITATION -->
+    <div class="quote-section">
+        <blockquote>
+            Le Bénin vous attend venez le découvrir, vous ne repartirez pas les mains vides.
+        </blockquote>
+        <cite>— Le Bénin Et Ses Découvertes</cite>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <h3>Le Bénin Et Ses Découvertes</h3>
+                <p>Un espace dédié à la découverte d'une nation fascinante, riche de son histoire,
+                de sa culture et de sa diversité. Explorez, apprenez, émerveillez-vous.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Navigation</h4>
+                <ul>
+                    <li><a href="about.html">À Propos</a></li>
+                    <li><a href="arts.html">Arts</a></li>
+                    <li><a href="culture.html">Culture</a></li>
+                    <li><a href="gastronomie.html">Gastronomie</a></li>
+                    <li><a href="tourisme.html">Tourisme</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Informations</h4>
+                <ul>
+                    <li><a href="#">Visa & Formalités</a></li>
+                    <li><a href="#">Santé & Sécurité</a></li>
+                    <li><a href="#">Transports</a></li>
+                    <li><a href="#">Hébergements</a></li>
+                    <li><a href="#">Guides locaux</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 Le Bénin Et Ses Découvertes Fait avec <span>❤</span> pour le Bénin</p>
+            <p>Réalisé par Idayath Adoukè OLAOGOU</p>
+        </div>
+    </footer>
 
 </body>
 </html>
