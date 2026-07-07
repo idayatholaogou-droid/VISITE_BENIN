@@ -46,6 +46,34 @@
             padding-bottom: 2px;
         }
 
+        /* ===== MENU BURGER (mobile) ===== */
+        .burger {
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 26px;
+            height: 19px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            position: absolute;
+            right: 24px;
+            top: 20px;
+            z-index: 20;
+            padding: 0;
+        }
+        .burger span {
+            display: block;
+            height: 3px;
+            width: 100%;
+            background: #fff;
+            border-radius: 2px;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+        .burger.open span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+        .burger.open span:nth-child(2) { opacity: 0; }
+        .burger.open span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+
         /* ===== HERO ===== */
         .hero-gastro {
             background-image: url('images/tokpa.jpg');
@@ -199,29 +227,33 @@
         .sauce-card {
             background: #fff;
             border-radius: 8px;
-            padding: 24px 20px;
+            overflow: hidden;
             box-shadow: 0 2px 12px rgba(0,0,0,0.07);
-            text-align: center;
             transition: transform 0.3s;
-            border-bottom: 3px solid #c0392b;
+            padding: 0 0 20px 0;
         }
         .sauce-card:hover { transform: translateY(-4px); }
-        .sauce-icon {
-            font-size: 2rem;
-            display: block;
-            margin-bottom: 12px;
-        }
-        .sauce-card h3 {
-            font-size: 0.95rem;
-            font-weight: 700;
-            color: #1a1a1a;
+        
+       .sauce-card h3 {
+            padding: 0 16px;
             margin-bottom: 8px;
         }
-        .sauce-card p {
-            font-size: 0.83rem;
-            color: #777;
-            line-height: 1.6;
+          
+        .sauce-card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            display: block;
+            border-radius: 6px 6px 0 0;
+            margin-bottom: 12px;
         }
+        .sauce-card p {
+            font-size: 0.87rem;
+            color: #666;
+            line-height: 1.75;
+            padding: 0 16px;
+        }
+
 
         /* ===== STREET FOOD ===== */
         .street-section {
@@ -412,10 +444,25 @@
 
         /* ===== RESPONSIVE ===== */
         @media (max-width: 768px) {
-            .head ul { gap: 14px; flex-wrap: wrap; padding: 0 16px; }
+
+            .burger { display: flex; }
+            .head ul {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                flex-direction: column;
+                gap: 0;
+                background: rgba(0,0,0,0.92);
+                padding: 10px 0;
+            }
+            .head ul.open { display: flex; }
+            .head ul li { width: 100%; text-align: center; }
+            .head ul li a { display: block; padding: 12px 0; }
             .hero-text h1 { font-size: 1.9rem; }
-            .plats-grid { grid-template-columns: 1fr 1fr; }
-            .sauces-grid { grid-template-columns: 1fr 1fr; }
+            .plats-grid { grid-template-columns: 1fr; }
+            .sauces-grid { grid-template-columns: 1fr; }
             .street-grid { grid-template-columns: 1fr; }
             .boissons-grid { grid-template-columns: 1fr; }
             .footer-grid { grid-template-columns: 1fr; gap: 30px; }
@@ -427,6 +474,9 @@
     <!-- HERO -->
     <div class="hero-gastro">
         <nav class="head">
+            <button class="burger" id="burgerBtn" aria-label="Ouvrir le menu" aria-expanded="false">
+                <span></span><span></span><span></span>
+            </button>
             <ul>
                 <li><a href="index.html">Accueil</a></li>
                 <li><a href="about.html">A Propos</a></li>
@@ -538,28 +588,28 @@
 
         <div class="sauces-grid">
             <div class="sauce-card">
-                <span class="sauce-icon">🌿</span>
+                <img  src="images/sauce_gluante.jpg" alt="Sauce Gluante"/>
                 <h3>Sauce Gluante</h3>
                 <p>À base de feuilles de corète (adémé), cette sauce onctueuse et filante est un
                 incontournable du sud du Bénin.</p>
             </div>
 
             <div class="sauce-card">
-                <span class="sauce-icon">🥜</span>
+                <img  src="images/sauce_arachide.jpg" alt="Sauce Arachide"/>
                 <h3>Sauce Arachide</h3>
                 <p>Riche et crémeuse, préparée à base de pâte d'arachide et d'épices, elle accompagne
                 riz, igname ou viande.</p>
             </div>
 
             <div class="sauce-card">
-                <span class="sauce-icon">🍅</span>
+                <img src="images/sauce_tomate.jpg" alt="Sauce de Tomate"/>
                 <h3>Sauce Tomate</h3>
                 <p>Base de nombreux plats béninois, mijotée avec des oignons, du piment et des
                 condiments locaux pour un goût unique.</p>
             </div>
 
             <div class="sauce-card">
-                <span class="sauce-icon">🌾</span>
+                <img src="images/sauce_gombo.jpg" alt="Sauce de Gombo"/>
                 <h3>Sauce Gombo</h3>
                 <p>Préparée à base d'okra frais, cette sauce légèrement visqueuse est très appréciée
                 avec le riz ou les tubercules.</p>
@@ -719,5 +769,6 @@
         </div>
     </footer>
 
+    <script src="script.js"></script>
 </body>
 </html>

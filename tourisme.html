@@ -46,6 +46,34 @@
             padding-bottom: 2px;
         }
 
+        /* ===== MENU BURGER (mobile) ===== */
+        .burger {
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 26px;
+            height: 19px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            position: absolute;
+            right: 24px;
+            top: 20px;
+            z-index: 20;
+            padding: 0;
+        }
+        .burger span {
+            display: block;
+            height: 3px;
+            width: 100%;
+            background: #fff;
+            border-radius: 2px;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+        .burger.open span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+        .burger.open span:nth-child(2) { opacity: 0; }
+        .burger.open span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+
         /* ===== HERO ===== */
         .hero-tourisme {
             background-image: url('images/parc.jpg');
@@ -180,13 +208,57 @@
             background: #f7f4f0;
             padding: 80px 40px;
         }
-        .historiques-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 24px;
-            max-width: 1100px;
+        /* ===== DIAPORAMA (carrousel sites historiques) ===== */
+        .diaporama {
+            position: relative;
+            max-width: 700px;
             margin: 50px auto 0;
+            overflow: hidden;
         }
+        .diaporama-track {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+        .diaporama-slide {
+            flex: 0 0 100%;
+        }
+        .diaporama-btn {
+            position: absolute;
+            top: 42%;
+            transform: translateY(-50%);
+            z-index: 5;
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            border: none;
+            background: #c0392b;
+            color: #fff;
+            font-size: 1rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s;
+        }
+        .diaporama-btn:hover { background: #a93226; }
+        .diaporama-btn.prev { left: -8px; }
+        .diaporama-btn.next { right: -8px; }
+        .diaporama-dots {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 22px;
+        }
+        .diaporama-dots span {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #ddd;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .diaporama-dots span.active { background: #c0392b; }
+
         .site-card {
             background: #fff;
             border-radius: 8px;
@@ -194,13 +266,9 @@
             box-shadow: 0 2px 12px rgba(0,0,0,0.08);
             transition: transform 0.3s, box-shadow 0.3s;
         }
-        .site-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 28px rgba(0,0,0,0.13);
-        }
         .site-card img {
             width: 100%;
-            height: 190px;
+            height: 280px;
             object-fit: cover;
             display: block;
         }
@@ -439,10 +507,29 @@
 
         /* ===== RESPONSIVE ===== */
         @media (max-width: 768px) {
-            .head ul { gap: 14px; flex-wrap: wrap; padding: 0 16px; }
+
+            .burger { display: flex; }
+            .head ul {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                flex-direction: column;
+                gap: 0;
+                background: rgba(0,0,0,0.92);
+                padding: 10px 0;
+            }
+            .head ul.open { display: flex; }
+            .head ul li { width: 100%; text-align: center; }
+            .head ul li a { display: block; padding: 12px 0; }
             .hero-text h1 { font-size: 1.9rem; }
             .vedette-content { grid-template-columns: 1fr; gap: 30px; }
-            .historiques-grid { grid-template-columns: 1fr 1fr; }
+            .diaporama { max-width: 92%; }
+            .diaporama-btn { width: 34px; height: 34px; font-size: 0.85rem; }
+            .diaporama-btn.prev { left: 2px; }
+            .diaporama-btn.next { right: 2px; }
+            .site-card img { height: 200px; }
             .naturels-grid { grid-template-columns: 1fr; }
             .villes-grid { grid-template-columns: 1fr 1fr; }
             .conseils-grid { grid-template-columns: 1fr; }
@@ -455,6 +542,9 @@
     <!-- HERO -->
     <div class="hero-tourisme">
         <nav class="head">
+            <button class="burger" id="burgerBtn" aria-label="Ouvrir le menu" aria-expanded="false">
+                <span></span><span></span><span></span>
+            </button>
             <ul>
                <li><a href="index.html">Accueil</a></li>
                 <li><a href="about.html">A Propos</a></li>
@@ -508,73 +598,80 @@
             <div class="divider"></div>
         </div>
 
-        <div class="historiques-grid">
-            <div class="site-card">
-                <img src="images/abomey.jpg" alt="abomey"/>
-                <div class="site-card-body">
-                    <span class="cat">UNESCO</span>
-                    <h3>Palais Royaux d'Abomey</h3>
-                    <p>Classés au patrimoine mondial de l'UNESCO, les palais royaux d'Abomey sont
-                    le témoignage le plus éloquent de la grandeur du Royaume de Dahomey. Bas-reliefs,
-                    trônes royaux et musée historique y cohabitent.</p>
+        <div class="diaporama" id="historiquesDiapo">
+            <button class="diaporama-btn prev" aria-label="Site précédent">&#10094;</button>
+
+            <div class="diaporama-track">
+                <div class="site-card diaporama-slide">
+                    <img src="images/abomey.jpg" alt="abomey"/>
+                    <div class="site-card-body">
+                        <span class="cat">UNESCO</span>
+                        <h3>Palais Royaux d'Abomey</h3>
+                        <p>Classés au patrimoine mondial de l'UNESCO, les palais royaux d'Abomey sont
+                        le témoignage le plus éloquent de la grandeur du Royaume de Dahomey. Bas-reliefs,
+                        trônes royaux et musée historique y cohabitent.</p>
+                    </div>
+                </div>
+
+                <div class="site-card diaporama-slide">
+                    <img src="images/ouidah.jpg" alt="La place des enchères">
+                    <div class="site-card-body">
+                        <span class="cat">Histoire</span>
+                        <h3>Route de l'Esclave _ Ouidah</h3>
+                        <p>Ce chemin historique de 4 km relie l'ancienne place des enchères à la "Porte
+                        du Non-Retour" sur la plage. Un lieu de mémoire poignant dédié aux millions
+                        d'Africains victimes de la traite négrière.</p>
+                    </div>
+                </div>
+
+                <div class="site-card diaporama-slide">
+                    <img src="images/python_animal.jpg" alt="python"/>
+                    <div class="site-card-body">
+                        <span class="cat">Spiritualité</span>
+                        <h3>Temple des Pythons _ Ouidah</h3>
+                        <p>Ce temple sacré abrite des dizaines de pythons royaux vénérés comme
+                        incarnations de la divinité Dan. Les visiteurs peuvent les tenir dans leurs
+                        mains — une expérience unique et inoubliable.</p>
+                    </div>
+                </div>
+
+                <div class="site-card diaporama-slide">
+                    <img src="images/porto_novo.jpeg" alt="porto-novo"/>
+                    <div class="site-card-body">
+                        <span class="cat">Capitale</span>
+                        <h3>Porto-Novo _ Ville Royale</h3>
+                        <p>Capitale constitutionnelle du Bénin, Porto-Novo mêle architecture coloniale
+                        portugaise et tradition Goun. Le Musée Ethnographique et la Grande Mosquée
+                        comptent parmi ses joyaux.</p>
+                    </div>
+                </div>
+
+                <div class="site-card diaporama-slide">
+                    <img src="images/tata .jpg" alt="tata"/>
+                    <div class="site-card-body">
+                        <span class="cat">Architecture</span>
+                        <h3>Tata Somba _ Maisons Fortifiées</h3>
+                        <p>Dans le nord du Bénin, les Tata Somba sont des maisons fortifiées à deux
+                        étages construites par le peuple Betammaribé. Classées à l'UNESCO, elles
+                        ressemblent à de petits châteaux de terre.</p>
+                    </div>
+                </div>
+
+                <div class="site-card diaporama-slide">
+                    <img src="images/sylva.jpg" alt="sylva"/>
+                    <div class="site-card-body">
+                        <span class="cat">Musée</span>
+                        <h3>Musée da Silva _ Porto-Novo</h3>
+                        <p>Installé dans l'ancienne demeure d'un négociant brésilien, ce musée retrace
+                        les liens historiques entre le Bénin et le Brésil, et présente une collection
+                        remarquable d'objets afro-brésiliens.</p>
+                    </div>
                 </div>
             </div>
 
-            <div class="site-card">
-                <img src="images/ouidah.jpg" alt="La place des enchères">
-                <div class="site-card-body">
-                    <span class="cat">Histoire</span>
-                    <h3>Route de l'Esclave _ Ouidah</h3>
-                    <p>Ce chemin historique de 4 km relie l'ancienne place des enchères à la "Porte
-                    du Non-Retour" sur la plage. Un lieu de mémoire poignant dédié aux millions
-                    d'Africains victimes de la traite négrière.</p>
-                </div>
-            </div>
-
-            <div class="site-card">
-                <img src="images/python_animal.jpg" alt="python"/>
-                <div class="site-card-body">
-                    <span class="cat">Spiritualité</span>
-                    <h3>Temple des Pythons _ Ouidah</h3>
-                    <p>Ce temple sacré abrite des dizaines de pythons royaux vénérés comme
-                    incarnations de la divinité Dan. Les visiteurs peuvent les tenir dans leurs
-                    mains — une expérience unique et inoubliable.</p>
-                </div>
-            </div>
-
-            <div class="site-card">
-                <img src="images/porto_novo.jpeg" alt="porto-novo"/>
-                <div class="site-card-body">
-                    <span class="cat">Capitale</span>
-                    <h3>Porto-Novo _ Ville Royale</h3>
-                    <p>Capitale constitutionnelle du Bénin, Porto-Novo mêle architecture coloniale
-                    portugaise et tradition Goun. Le Musée Ethnographique et la Grande Mosquée
-                    comptent parmi ses joyaux.</p>
-                </div>
-            </div>
-
-            <div class="site-card">
-                <img src="images/tata .jpg" alt="tata"/>
-                <div class="site-card-body">
-                    <span class="cat">Architecture</span>
-                    <h3>Tata Somba _ Maisons Fortifiées</h3>
-                    <p>Dans le nord du Bénin, les Tata Somba sont des maisons fortifiées à deux
-                    étages construites par le peuple Betammaribé. Classées à l'UNESCO, elles
-                    ressemblent à de petits châteaux de terre.</p>
-                </div>
-            </div>
-
-            <div class="site-card">
-                <img src="images/sylva.jpg" alt="sylva"/>
-                <div class="site-card-body">
-                    <span class="cat">Musée</span>
-                    <h3>Musée da Silva _ Porto-Novo</h3>
-                    <p>Installé dans l'ancienne demeure d'un négociant brésilien, ce musée retrace
-                    les liens historiques entre le Bénin et le Brésil, et présente une collection
-                    remarquable d'objets afro-brésiliens.</p>
-                </div>
-            </div>
+            <button class="diaporama-btn next" aria-label="Site suivant">&#10095;</button>
         </div>
+        <div class="diaporama-dots"></div>
     </section>
 
     <!-- SITES NATURELS -->
@@ -764,5 +861,6 @@
         </div>
     </footer>
 
+    <script src="script.js"></script>
 </body>
 </html>

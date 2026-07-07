@@ -46,6 +46,34 @@
             padding-bottom: 2px;
         }
 
+        /* ===== MENU BURGER (mobile) ===== */
+        .burger {
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 26px;
+            height: 19px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            position: absolute;
+            right: 24px;
+            top: 20px;
+            z-index: 20;
+            padding: 0;
+        }
+        .burger span {
+            display: block;
+            height: 3px;
+            width: 100%;
+            background: #fff;
+            border-radius: 2px;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+        .burger.open span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+        .burger.open span:nth-child(2) { opacity: 0; }
+        .burger.open span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+
         /* ===== HERO ===== */
         .hero-index {
             background-image: url('images/amazone.webp');
@@ -410,12 +438,27 @@
 
         /* ===== RESPONSIVE ===== */
         @media (max-width: 768px) {
-            .head ul { gap: 14px; flex-wrap: wrap; padding: 0 16px; }
+
+            .burger { display: flex; }
+            .head ul {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                flex-direction: column;
+                gap: 0;
+                background: rgba(0,0,0,0.92);
+                padding: 10px 0;
+            }
+            .head ul.open { display: flex; }
+            .head ul li { width: 100%; text-align: center; }
+            .head ul li a { display: block; padding: 12px 0; }
             .hero-content h1 { font-size: 2.2rem; }
             .stats-grid { flex-wrap: wrap; }
             .stat-item { flex: 1 1 40%; border-right: none; border-bottom: 1px solid rgba(255,255,255,0.2); }
             .intro-section { grid-template-columns: 1fr; gap: 40px; }
-            .sections-grid { grid-template-columns: 1fr 1fr; }
+            .sections-grid { grid-template-columns: 1fr; }
             .events-grid { grid-template-columns: 1fr; }
             .footer-grid { grid-template-columns: 1fr; gap: 30px; }
         }
@@ -426,6 +469,9 @@
     <!-- HERO -->
     <div class="hero-index">
         <nav class="head">
+            <button class="burger" id="burgerBtn" aria-label="Ouvrir le menu" aria-expanded="false">
+                <span></span><span></span><span></span>
+            </button>
             <ul>
                 <li><a href="index.html" class="active">Accueil</a></li>
                 <li><a href="about.html">A Propos</a></li>
@@ -641,5 +687,6 @@
         </div>
     </footer>
 
+    <script src="script.js"></script>
 </body>
 </html>

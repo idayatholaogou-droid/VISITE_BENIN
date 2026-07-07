@@ -46,6 +46,34 @@
             padding-bottom: 2px;
         }
 
+        /* ===== MENU BURGER (mobile) ===== */
+        .burger {
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 26px;
+            height: 19px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            position: absolute;
+            right: 24px;
+            top: 20px;
+            z-index: 20;
+            padding: 0;
+        }
+        .burger span {
+            display: block;
+            height: 3px;
+            width: 100%;
+            background: #fff;
+            border-radius: 2px;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+        .burger.open span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+        .burger.open span:nth-child(2) { opacity: 0; }
+        .burger.open span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+
         /* ===== HERO ===== */
         .hero-culture {
             background-image: url('images/porte.jpg');
@@ -459,7 +487,22 @@
 
         /* ===== RESPONSIVE ===== */
         @media (max-width: 768px) {
-            .head ul { gap: 14px; flex-wrap: wrap; padding: 0 16px; }
+
+            .burger { display: flex; }
+            .head ul {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                flex-direction: column;
+                gap: 0;
+                background: rgba(0,0,0,0.92);
+                padding: 10px 0;
+            }
+            .head ul.open { display: flex; }
+            .head ul li { width: 100%; text-align: center; }
+            .head ul li a { display: block; padding: 12px 0; }
             .hero-text h1 { font-size: 1.9rem; }
             .rois-grid { grid-template-columns: 1fr; }
             .porto-grid { grid-template-columns: 1fr; }
@@ -474,6 +517,9 @@
     <!-- HERO -->
     <div class="hero-culture">
         <nav class="head">
+            <button class="burger" id="burgerBtn" aria-label="Ouvrir le menu" aria-expanded="false">
+                <span></span><span></span><span></span>
+            </button>
             <ul>
                 <li><a href="index.html">Accueil</a></li>
                 <li><a href="about.html">A Propos</a></li>
@@ -863,5 +909,6 @@
         </div>
     </footer>
 
+    <script src="script.js"></script>
 </body>
 </html>
