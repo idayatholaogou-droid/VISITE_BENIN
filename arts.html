@@ -14,7 +14,6 @@
             background-color: #fff;
         }
 
-        /* ===== NAVIGATION ===== */
         .head {
             position: absolute;
             top: 0; left: 0;
@@ -46,7 +45,6 @@
             padding-bottom: 2px;
         }
 
-        /* ===== MENU BURGER (mobile) ===== */
         .burger {
             display: none;
             flex-direction: column;
@@ -74,7 +72,6 @@
         .burger.open span:nth-child(2) { opacity: 0; }
         .burger.open span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
 
-        /* ===== HERO ===== */
         .hero-arts {
             background-image: url(images/mur.jpg);
             background-size: cover;
@@ -114,7 +111,6 @@
             margin: 0 auto;
         }
 
-        /* ===== BANDE ROUGE ===== */
         .red-band {
             background: #c0392b;
             padding: 20px 40px;
@@ -127,7 +123,6 @@
             letter-spacing: 0.5px;
         }
 
-        /* ===== SECTIONS COMMUNES ===== */
         .section-header {
             text-align: center;
             margin-bottom: 50px;
@@ -153,7 +148,6 @@
             margin: 16px auto 0;
         }
 
-        /* ===== SECTION ART ROYAL ===== */
         .art-royal {
             padding: 80px 40px;
             max-width: 1100px;
@@ -200,7 +194,6 @@
             margin-bottom: 16px;
         }
 
-        /* ===== GALERIE GRILLE ===== */
         .galerie-section {
             background: #f7f4f0;
             padding: 80px 40px;
@@ -253,7 +246,6 @@
             display: block;
         }
 
-        /* ===== SECTION APPLIQUÉS ===== */
         .appliques-section {
             padding: 80px 40px;
             max-width: 1100px;
@@ -291,7 +283,6 @@
             margin-bottom: 14px;
         }
 
-        /* ===== ART CONTEMPORAIN ===== */
         .contemporain-section {
             background: #1a1a1a;
             padding: 80px 40px;
@@ -351,8 +342,7 @@
             color: rgba(255,255,255,0.6);
             line-height: 1.7;
         }
-
-        /* ===== CITATION ===== */
+        
         .quote-section {
             background: #c0392b;
             padding: 60px 40px;
@@ -376,7 +366,6 @@
             text-transform: uppercase;
         }
 
-        /* ===== FOOTER ===== */
         footer {
             background: #111;
             padding: 50px 40px 24px;
@@ -417,7 +406,6 @@
         .footer-bottom p { color: rgba(255,255,255,0.3); font-size: 0.8rem; }
         .footer-bottom span { color: #c0392b; }
 
-        /* ===== RESPONSIVE ===== */
         @media (max-width: 768px) {
 
             .burger { display: flex; }
@@ -447,7 +435,6 @@
 </head>
 <body>
 
-    <!-- HERO -->
     <div class="hero-arts">
         <nav class="head">
             <button class="burger" id="burgerBtn" aria-label="Ouvrir le menu" aria-expanded="false">
@@ -471,12 +458,10 @@
         </div>
     </div>
 
-    <!-- BANDE ROUGE -->
     <div class="red-band">
         <p>« L'art béninois reflète l'héritage culturel du pays, la complexité des croyances du Vodoun, et les interactions avec le monde extérieur. »</p>
     </div>
 
-    <!-- ART ROYAL — BAS-RELIEFS -->
     <section class="art-royal">
         <div class="art-royal-content">
             <div class="art-royal-img">
@@ -497,7 +482,6 @@
         </div>
     </section>
 
-    <!-- GALERIE — 3 FORMES D'ART -->
     <section class="galerie-section">
         <div class="section-header">
             <span class="tag">Patrimoine</span>
@@ -540,7 +524,6 @@
         </div>
     </section>
 
-    <!-- APPLIQUÉS DE TISSU -->
     <section class="appliques-section">
         <div class="appliques-content">
             <div class="appliques-text">
@@ -559,7 +542,6 @@
         </div>
     </section>
 
-    <!-- ARTISTES CONTEMPORAINS -->
     <section class="contemporain-section">
         <div class="section-header">
             <span class="tag">Aujourd'hui</span>
@@ -594,7 +576,6 @@
         </div>
     </section>
 
-    <!-- CITATION -->
     <div class="quote-section">
         <blockquote>
             L'art béninois ne décore pas; il raconte, il protège, il honore.
@@ -602,7 +583,6 @@
         <cite>— Le Bénin Et Ses Découvertes</cite>
     </div>
 
-    <!-- FOOTER -->
     <footer>
         <div class="footer-grid">
             <div class="footer-brand">

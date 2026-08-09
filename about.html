@@ -18,7 +18,6 @@
             background-color: #fff;
         }
 
-        /* ===== NAVIGATION ===== */
         .head {
             position: absolute;
             top: 0;
@@ -57,7 +56,6 @@
             padding-bottom: 2px;
         }
 
-        /* ===== MENU BURGER (mobile) ===== */
         .burger {
             display: none;
             flex-direction: column;
@@ -85,11 +83,10 @@
         .burger.open span:nth-child(2) { opacity: 0; }
         .burger.open span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
 
-        /* ===== HERO ===== */
         .Info {
             background-image: url(images/amazone.webp);
             background-size: cover;
-            background-position: center;
+            background-position: center top;
             height: 100vh;
             position: relative;
             color: white;
@@ -133,7 +130,6 @@
             margin: 0 auto;
         }
 
-        /* ===== CHIFFRES CLÉS ===== */
         .stats-bar {
             background: #c0392b;
             padding: 30px 0;
@@ -174,7 +170,6 @@
             display: block;
         }
 
-        /* ===== SECTION À PROPOS ===== */
         .about-section {
             padding: 80px 40px;
             max-width: 1100px;
@@ -261,7 +256,6 @@
             line-height: 1.6;
         }
 
-        /* ===== SECTION VILLES ===== */
         .cities-section {
             background: #f7f4f0;
             padding: 80px 40px;
@@ -326,7 +320,6 @@
             line-height: 1.7;
         }
 
-        /* ===== CITATION ===== */
         .quote-section {
             background: #1a1a1a;
             padding: 70px 40px;
@@ -361,7 +354,6 @@
             text-transform: uppercase;
         }
 
-        /* ===== FOOTER ===== */
         footer {
             background: #111;
             padding: 50px 40px 24px;
@@ -432,7 +424,6 @@
             color: #c0392b;
         }
 
-        /* ===== RESPONSIVE ===== */
         @media (max-width: 768px) {
 
             .burger { display: flex; }
@@ -488,7 +479,6 @@
 </head>
 <body>
 
-    <!-- HERO -->
     <div class="Info">
         <nav class="head">
             <button class="burger" id="burgerBtn" aria-label="Ouvrir le menu" aria-expanded="false">
@@ -514,7 +504,6 @@
         </div>
     </div>
 
-    <!-- CHIFFRES CLÉS -->
     <div class="stats-bar">
         <div class="stats-grid">
             <div class="stat-item">
@@ -540,7 +529,6 @@
         </div>
     </div>
 
-    <!-- À PROPOS -->
     <section class="about-section">
         <div class="section-header">
             <span class="tag">Découvrez</span>
@@ -586,7 +574,6 @@
         </div>
     </section>
 
-    <!-- LES 4 VILLES -->
     <section class="cities-section">
         <div class="section-header">
             <span class="tag">Géographie</span>
@@ -641,15 +628,13 @@
         </div>
     </section>
 
-    <!-- CITATION -->
     <div class="quote-section">
         <blockquote>
-            Le Bénin — une fois connu, ne vous quitte plus jamais.
+            Le Bénin, une fois connu, ne vous quitte plus jamais.
         </blockquote>
         <cite>Le Bénin Et Ses Découvertes</cite>
     </div>
 
-    <!-- FOOTER -->
     <footer>
         <div class="footer-grid">
             <div class="footer-brand">
@@ -683,7 +668,7 @@
         </div>
 
         <div class="footer-bottom">
-            <p>© 2026 Le Bénin Et Ses Découvertes — Fait avec <span>❤</span> pour le Bénin: <span>Ma Patrie</span></p>
+            <p>© 2026 Le Bénin Et Ses Découvertes _ Fait avec <span>❤</span> pour le Bénin: <span>Ma Patrie</span></p>
             <p>Réalisé par Idayath Adoukè OLAOGOU</p>
         </div>
     </footer>

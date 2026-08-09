@@ -1,8 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
 
-    /* =====================================================
-       1. MENU BURGER (mobile)
-    ===================================================== */
+    
     const burger = document.querySelector('.burger');
     const navList = document.querySelector('nav.head ul');
 
@@ -13,7 +11,7 @@ document.addEventListener('DOMContentLoaded', function () {
             burger.setAttribute('aria-expanded', isOpen);
         });
 
-        // Ferme le menu quand on clique sur un lien
+      
         navList.querySelectorAll('a').forEach(function (link) {
             link.addEventListener('click', function () {
                 navList.classList.remove('open');
@@ -22,7 +20,6 @@ document.addEventListener('DOMContentLoaded', function () {
             });
         });
 
-        // Ferme le menu si on repasse en version bureau
         window.addEventListener('resize', function () {
             if (window.innerWidth > 768) {
                 navList.classList.remove('open');
@@ -32,17 +29,10 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-
-    /* =====================================================
-       2. COMPTEUR ANIMÉ DES CHIFFRES (.stat-number)
-    ===================================================== */
     const statNumbers = document.querySelectorAll('.stat-number');
 
     function animateCount(el) {
         const raw = el.textContent.trim();
-        // Ex: "~13M" -> prefix "~", digits "13", suffix "M"
-        //     "114 763" -> prefix "", digits "114 763", suffix ""
-        //     "700 km" -> prefix "", digits "700", suffix " km"
         const match = raw.match(/^([^\d]*)([\d\s]+)(.*)$/);
         if (!match) return;
 
@@ -85,10 +75,6 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-
-    /* =====================================================
-       3. VALIDATION DU FORMULAIRE DE CONTACT
-    ===================================================== */
     const contactForm = document.querySelector('.contact-form form');
 
     if (contactForm) {
@@ -162,11 +148,6 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-
-    /* =====================================================
-       4. DIAPORAMA (générique : réutilisable sur n'importe
-          quelle section .diaporama)
-    ===================================================== */
     document.querySelectorAll('.diaporama').forEach(function (diapo) {
         const track = diapo.querySelector('.diaporama-track');
         const slides = diapo.querySelectorAll('.diaporama-slide');

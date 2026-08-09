@@ -14,7 +14,6 @@
             background-color: #fff;
         }
 
-        /* ===== NAVIGATION ===== */
         .head {
             position: absolute;
             top: 0; left: 0;
@@ -46,7 +45,6 @@
             padding-bottom: 2px;
         }
 
-        /* ===== MENU BURGER (mobile) ===== */
         .burger {
             display: none;
             flex-direction: column;
@@ -74,7 +72,6 @@
         .burger.open span:nth-child(2) { opacity: 0; }
         .burger.open span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
 
-        /* ===== HERO ===== */
         .hero-index {
             background-image: url('images/amazone.webp');
             background-size: cover;
@@ -138,7 +135,6 @@
         }
         .hero-btn:hover { background: #a93226; }
 
-        /* ===== SECTION HEADER ===== */
         .section-header {
             text-align: center;
             margin-bottom: 50px;
@@ -167,7 +163,6 @@
         .section-header.light .tag { color: #e8c97a; }
         .section-header.light .divider { background: #e8c97a; }
 
-        /* ===== CHIFFRES CLÉS ===== */
         .stats-bar {
             background: #c0392b;
             padding: 30px 0;
@@ -200,7 +195,6 @@
             display: block;
         }
 
-        /* ===== INTRO ===== */
         .intro-section {
             padding: 80px 40px;
             max-width: 1100px;
@@ -247,7 +241,6 @@
             box-shadow: 0 8px 30px rgba(0,0,0,0.15);
         }
 
-        /* ===== SECTIONS DU SITE ===== */
         .sections-site {
             background: #f7f4f0;
             padding: 80px 40px;
@@ -323,7 +316,6 @@
             color: #c0392b;
         }
 
-        /* ===== CITATION ===== */
         .quote-section {
             background: #1a1a1a;
             padding: 80px 40px;
@@ -355,7 +347,6 @@
             text-transform: uppercase;
         }
 
-        /* ===== ÉVÉNEMENTS ===== */
         .events-section {
             padding: 80px 40px;
             max-width: 1100px;
@@ -398,7 +389,6 @@
             line-height: 1.7;
         }
 
-        /* ===== FOOTER ===== */
         footer { background: #111; padding: 50px 40px 24px; }
         .footer-grid {
             display: grid;
@@ -436,7 +426,6 @@
         .footer-bottom p { color: rgba(255,255,255,0.3); font-size: 0.8rem; }
         .footer-bottom span { color: #c0392b; }
 
-        /* ===== RESPONSIVE ===== */
         @media (max-width: 768px) {
 
             .burger { display: flex; }
@@ -466,7 +455,6 @@
 </head>
 <body>
 
-    <!-- HERO -->
     <div class="hero-index">
         <nav class="head">
             <button class="burger" id="burgerBtn" aria-label="Ouvrir le menu" aria-expanded="false">
@@ -491,7 +479,6 @@
         </div>
     </div>
 
-    <!-- CHIFFRES CLÉS -->
     <div class="stats-bar">
         <div class="stats-grid">
             <div class="stat-item">
@@ -517,7 +504,6 @@
         </div>
     </div>
 
-    <!-- INTRO -->
     <section class="intro-section">
         <div class="intro-text">
             <h2>Un pays qui ne vous <span>quitte plus</span> jamais</h2>
@@ -534,7 +520,6 @@
         </div>
     </section>
 
-    <!-- SECTIONS DU SITE -->
     <section class="sections-site">
         <div class="section-header">
             <span class="tag">Explorer</span>
@@ -611,15 +596,13 @@
         </div>
     </section>
 
-    <!-- CITATION -->
     <div class="quote-section">
         <blockquote>
-            Le Bénin — une fois connu, ne vous quitte plus jamais.
+            Le Bénin une fois connu, ne vous quitte plus jamais.
         </blockquote>
         <cite> Le Bénin Et Ses Découvertes</cite>
     </div>
 
-    <!-- ÉVÉNEMENTS -->
     <section class="events-section">
         <div class="section-header">
             <span class="tag">À ne pas manquer</span>
@@ -648,10 +631,17 @@
                 <p>Cérémonie traditionnelle des couvents vodoun d'Abomey, occasion rare d'assister
                 à des rituels ancestraux préservés depuis des siècles au cœur de l'ancien Dahomey.</p>
             </div>
+            <div class="event-card">
+                <span class="event-date">Août · Savalou</span>
+                <h3>Fête de l'Igname</h3>
+                <p>La fête de l'Igname au Bénin est une célébration traditionnelle et culturelle majeure
+                 qui a lieu chaque 15 août principalement, dans la ville de Savalou ainsi que dans d'autres 
+                localités du centre et du nord du pays comme Dassa-Zoumè et Bassila. Elle marque l'autorisation
+                 officielle par les rois et chefs traditionnels de consommer les nouvelles récoltes d'ignames  .</p>
+            </div>
         </div>
     </section>
 
-    <!-- FOOTER -->
     <footer>
         <div class="footer-grid">
             <div class="footer-brand">
@@ -682,7 +672,7 @@
             </div>
         </div>
         <div class="footer-bottom">
-            <p>© 2026 Le Bénin Et Ses Découvertes — Fait avec <span>❤</span> pour le Bénin: <span>Ma Patrie</span></p>
+            <p>© 2026 Le Bénin Et Ses Découvertes _ Fait avec <span>❤</span> pour le Bénin: <span>Ma Patrie</span></p>
              <p>Réalisé par Idayath Adoukè OLAOGOU </p>
         </div>
     </footer>

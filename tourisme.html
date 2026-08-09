@@ -14,7 +14,6 @@
             background-color: #fff;
         }
 
-        /* ===== NAVIGATION ===== */
         .head {
             position: absolute;
             top: 0; left: 0;
@@ -46,7 +45,6 @@
             padding-bottom: 2px;
         }
 
-        /* ===== MENU BURGER (mobile) ===== */
         .burger {
             display: none;
             flex-direction: column;
@@ -74,7 +72,6 @@
         .burger.open span:nth-child(2) { opacity: 0; }
         .burger.open span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
 
-        /* ===== HERO ===== */
         .hero-tourisme {
             background-image: url('images/parc.jpg');
             background-size: cover;
@@ -114,7 +111,6 @@
             margin: 0 auto;
         }
 
-        /* ===== SECTION HEADER ===== */
         .section-header {
             text-align: center;
             margin-bottom: 50px;
@@ -143,7 +139,6 @@
         .section-header.light .tag { color: #e8c97a; }
         .section-header.light .divider { background: #e8c97a; }
 
-        /* ===== BANDE ROUGE ===== */
         .red-band {
             background: #c0392b;
             padding: 26px 40px;
@@ -157,7 +152,6 @@
             margin: 0 auto;
         }
 
-        /* ===== SITE VEDETTE (Ganvié) ===== */
         .vedette-section {
             padding: 80px 40px;
             max-width: 1100px;
@@ -203,12 +197,11 @@
             margin-bottom: 14px;
         }
 
-        /* ===== SITES HISTORIQUES ===== */
         .historiques-section {
             background: #f7f4f0;
             padding: 80px 40px;
         }
-        /* ===== DIAPORAMA (carrousel sites historiques) ===== */
+       
         .diaporama {
             position: relative;
             max-width: 700px;
@@ -298,7 +291,6 @@
             line-height: 1.75;
         }
 
-        /* ===== SITES NATURELS ===== */
         .naturels-section {
             padding: 80px 40px;
             max-width: 1100px;
@@ -360,7 +352,6 @@
             line-height: 1.6;
         }
 
-        /* ===== VILLES ===== */
         .villes-section {
             background: #1a1a1a;
             padding: 80px 40px;
@@ -407,7 +398,6 @@
             line-height: 1.7;
         }
 
-        /* ===== CONSEILS VOYAGE ===== */
         .conseils-section {
             padding: 80px 40px;
             max-width: 1100px;
@@ -443,7 +433,6 @@
             line-height: 1.75;
         }
 
-        /* ===== CITATION ===== */
         .quote-section {
             background: #c0392b;
             padding: 60px 40px;
@@ -467,7 +456,6 @@
             text-transform: uppercase;
         }
 
-        /* ===== FOOTER ===== */
         footer { background: #111; padding: 50px 40px 24px; }
         .footer-grid {
             display: grid;
@@ -505,7 +493,6 @@
         .footer-bottom p { color: rgba(255,255,255,0.3); font-size: 0.8rem; }
         .footer-bottom span { color: #c0392b; }
 
-        /* ===== RESPONSIVE ===== */
         @media (max-width: 768px) {
 
             .burger { display: flex; }
@@ -539,7 +526,6 @@
 </head>
 <body>
 
-    <!-- HERO -->
     <div class="hero-tourisme">
         <nav class="head">
             <button class="burger" id="burgerBtn" aria-label="Ouvrir le menu" aria-expanded="false">
@@ -563,13 +549,11 @@
         </div>
     </div>
 
-    <!-- BANDE ROUGE -->
     <div class="red-band">
-        <p>« Le Bénin est l'une des destinations les plus authentiques d'Afrique de l'Ouest _
+        <p>« Le Bénin est l'une des destinations les plus authentiques d'Afrique de l'Ouest; 
         un pays où l'histoire, la nature et la spiritualité se rencontrent à chaque pas. »</p>
     </div>
 
-    <!-- SITE VEDETTE — GANVIÉ -->
     <section class="vedette-section">
         <div class="vedette-content">
             <div class="vedette-img">
@@ -590,7 +574,6 @@
         </div>
     </section>
 
-    <!-- SITES HISTORIQUES -->
     <section class="historiques-section">
         <div class="section-header">
             <span class="tag">Patrimoine</span>
@@ -674,7 +657,6 @@
         <div class="diaporama-dots"></div>
     </section>
 
-    <!-- SITES NATURELS -->
     <section class="naturels-section">
         <div class="section-header">
             <span class="tag">Nature</span>
@@ -725,7 +707,6 @@
         </div>
     </section>
 
-    <!-- VILLES À VISITER -->
     <section class="villes-section">
         <div class="section-header light">
             <span class="tag">Destinations</span>
@@ -764,7 +745,6 @@
         </div>
     </section>
 
-    <!-- CONSEILS PRATIQUES -->
     <section class="conseils-section">
         <div class="section-header">
             <span class="tag">Pratique</span>
@@ -817,7 +797,6 @@
         </div>
     </section>
 
-    <!-- CITATION -->
     <div class="quote-section">
         <blockquote>
             Voyager au Bénin, c'est toucher l'âme de l'Afrique.
@@ -825,7 +804,6 @@
         <cite> Le Bénin Et Ses Découvertes</cite>
     </div>
 
-    <!-- FOOTER -->
     <footer>
         <div class="footer-grid">
             <div class="footer-brand">
